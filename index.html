@@ -1,0 +1,773 @@
+<!doctype html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="유채린의 웹 디자인 및 퍼블리싱 포트폴리오">
+  <meta name="theme-color" content="#f5eee7">
+  <title>웹디자이너 유채린 프로필 페이지</title>
+  <link rel="icon" type="image/png" sizes="32x32" href="./img/favicon-32x32.png">
+  <link rel="preconnect" href="https://cdn.jsdelivr.net">
+  <link rel="preconnect" href="https://fastly.jsdelivr.net" crossorigin>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/variable/pretendardvariable.css">
+  <link rel="stylesheet" href="./css/style.css?v=responsive-flow-v20">
+  <link rel="stylesheet" href="https://unpkg.com/lenis@1.3.26/dist/lenis.css">
+  <script src="https://unpkg.com/lenis@1.3.26/dist/lenis.min.js" defer></script>
+  <script src="./js/main.js?v=responsive-flow-v19" defer></script>
+</head>
+
+<body data-build="responsive-flow-v19">
+  <header class="site-header">
+    <div class="site-header__menu">
+      <a class="brand-button" href="#home" aria-label="홈으로 이동">
+        <img class="brand-mark" src="./img/ycr-logo.png" alt="">
+      </a>
+
+      <nav class="menu-panel" aria-label="포트폴리오 메뉴">
+        <div class="menu-panel__items">
+          <a class="menu-panel__link menu-panel__link--primary" href="#about-me" data-nav-intro="about-me"
+            data-nav-content="about-content">ABOUT
+            ME</a>
+
+          <div class="menu-panel__group">
+            <a class="menu-panel__link menu-panel__link--primary" href="#selected-works"
+              data-nav-intro="selected-works" data-nav-content="popup"
+              data-nav-group="popup,poster,banner,detail-page">SELECTED WORKS</a>
+            <div class="menu-panel__submenu">
+              <a class="menu-panel__link menu-panel__link--depth" href="#popup" data-nav-section="popup">POPUP</a>
+              <a class="menu-panel__link menu-panel__link--depth" href="#poster" data-nav-section="poster">POSTER</a>
+              <a class="menu-panel__link menu-panel__link--depth" href="#banner" data-nav-section="banner">BANNER</a>
+              <a class="menu-panel__link menu-panel__link--depth" href="#detail-page"
+                data-nav-section="detail-page">DETAIL PAGE</a>
+            </div>
+          </div>
+
+          <div class="menu-panel__group menu-panel__group--toggle">
+            <a class="menu-panel__link menu-panel__link--primary" href="#web-projects"
+              data-nav-intro="web-projects" data-nav-content="romand">WEB PROJECTS</a>
+            <div class="menu-panel__submenu">
+              <a class="menu-panel__link menu-panel__link--depth" href="#romand"
+                data-nav-section="romand">ROM&amp;ND</a>
+              <a class="menu-panel__link menu-panel__link--depth" href="#orum" data-nav-section="orum">O’RUM</a>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </div>
+
+    <p class="site-header__section-title" data-header-section-title aria-live="polite"></p>
+    <a class="site-header__contact" href="#contact" data-nav-section="contact">CONTACT</a>
+  </header>
+
+  <section class="hero-transition" id="home" data-section="home" aria-label="홈">
+    <header class="hero">
+      <div class="hero__background" aria-hidden="true">
+        <div class="hero__beam"></div>
+        <img class="hero__light" src="./img/refraction-light.webp" alt="">
+        <div class="hero__veil"></div>
+      </div>
+
+      <div class="hero__copy">
+        <div class="hero__meta" aria-label="프로필 정보">
+          <span>WEB DESIGNER &amp; PUBLISHER</span>
+          <span>YU CHAERIN</span>
+        </div>
+
+        <div class="hero__title-block">
+          <h1>DETAILS IN MOTION</h1>
+        </div>
+
+        <a class="hero__scroll-cue" href="#about-me" aria-label="다음 섹션으로 이동">
+          <span>SCROLL DOWN</span>
+          <span class="hero__scroll-icon" aria-hidden="true">
+            <svg viewBox="0 0 48 48" role="img">
+              <circle cx="24" cy="24" r="23"></circle>
+              <path d="M24 14v19M16.5 25.5 24 33l7.5-7.5"></path>
+            </svg>
+          </span>
+        </a>
+      </div>
+
+      <div class="hero__sphere-cover" aria-hidden="true"></div>
+
+      <div class="hero__sphere-stage" aria-hidden="true">
+        <div class="hero__sphere-float">
+          <img class="hero__sphere" src="./img/glass-sphere.webp" alt="">
+        </div>
+      </div>
+    </header>
+  </section>
+
+  <main class="portfolio-sections">
+    <section class="section-transition" id="about-me" data-section-intro data-section-title="ABOUT ME"
+      aria-label="ABOUT ME 섹션 시작">
+      <div class="section-transition__sticky">
+        <div class="section-transition__tone" aria-hidden="true"></div>
+        <div class="section-transition__wipe" aria-hidden="true">
+          <span></span><span></span><span></span><span></span><span></span>
+        </div>
+        <h2 class="section-transition__title">ABOUT ME</h2>
+      </div>
+    </section>
+
+    <section class="portfolio-section about-section" id="about-content" data-section="about-me"
+      data-section-title="ABOUT ME" aria-labelledby="about-attitude-title">
+      <div class="about-section__flow">
+        <div class="about-section__caustics" aria-hidden="true">
+          <img src="./img/refraction-light.webp" alt="">
+        </div>
+
+        <div class="about-section__content about-section__content--attitude" data-about-phase="attitude">
+          <div class="attitude-layout" aria-label="프로필과 디자인 태도 네 가지">
+            <div class="about-section__left about-section__left--attitude">
+              <header class="about-section__intro" data-about-intro>
+                <h2 class="about-section__title about-section__title--attitude" id="about-attitude-title"
+                  data-about-title="attitude">DESIGN<br>ATTITUDE</h2>
+                <p class="about-section__lead about-section__lead--attitude" data-about-lead="attitude">좋은 화면은 작은 기준에서
+                  시작됩니다.</p>
+              </header>
+
+              <figure class="attitude-profile" data-attitude-card>
+                <div class="attitude-profile__image-wrap">
+                  <img src="./img/profile.jpg" alt="웹디자이너 유채린 프로필 사진">
+                </div>
+                <figcaption>
+                  <strong>YU CHAERIN</strong>
+                  <span>WEB DESIGNER &amp; PUBLISHER</span>
+                </figcaption>
+              </figure>
+            </div>
+
+            <div class="attitude-grid">
+              <article class="attitude-card" data-attitude-card>
+                <h3>보이기 전에, 먼저 정리합니다.</h3>
+                <div class="attitude-card__description">
+                  <p class="attitude-card__label"><span>01</span> STRUCTURE</p>
+                  <p>콘텐츠의 목적과 중요도를 구분하고<br>사용자가 어떤 정보를 먼저 봐야 하는지 생각합니다.</p>
+                  <p>정보 구조가 정리된 이후<br>레이아웃과 시각적인 표현을 결정합니다.</p>
+                </div>
+              </article>
+
+              <article class="attitude-card" data-attitude-card>
+                <h3>작은 차이에서 완성도를 높입니다.</h3>
+                <div class="attitude-card__description">
+                  <p class="attitude-card__label"><span>02</span> BALANCE</p>
+                  <p>글자의 크기와 굵기, 행간, 정렬, 이미지 비율, 여백처럼<br>눈에 크게 드러나지 않는 요소까지 조율합니다.</p>
+                  <p>화려함보다는<br>전체 화면의 균형을 중요하게 생각합니다.</p>
+                </div>
+              </article>
+
+              <article class="attitude-card" data-attitude-card>
+                <h3>브랜드의 스타일을 먼저 봅니다.</h3>
+                <div class="attitude-card__description">
+                  <p class="attitude-card__label"><span>03</span> IDENTITY</p>
+                  <p>모든 프로젝트에 같은 디자인을 적용하기보다는<br>브랜드가 가진 타깃과 이미지, 제품의 성격을 분석합니다.</p>
+                  <p>필요하다면 기존 디자인을 다시 검토하고<br>브랜드의 방향과 맞지 않는 부분은 과감하게 수정합니다.</p>
+                </div>
+              </article>
+
+              <article class="attitude-card" data-attitude-card>
+                <h3>실제로 구현되는 화면을 생각합니다.</h3>
+                <div class="attitude-card__description">
+                  <p class="attitude-card__label"><span>04</span> IMPLEMENTATION</p>
+                  <p>디자인 단계부터 변화하는 UI, 콘텐츠 구조, 반응형 변화와<br>HTML·CSS 구현 방식을 함께 고려합니다.</p>
+                  <p>디자인과 개발 사이의 간격을 줄이는 것이<br>제가 가진 강점 중 하나입니다.</p>
+                </div>
+              </article>
+              
+              <article class="attitude-card" data-attitude-card>
+                <h3>사용자의 흐름을 먼저 생각합니다.</h3>
+                <div class="attitude-card__description">
+                  <p class="attitude-card__label"><span>05</span> USABILITY</p>
+                  <p>사용자의 흐름을 먼저 생각합니다. 화면을 보는 순서와 클릭하는 과정이<br>자연스럽게 이어지는지 확인합니다.</p>
+                  <p>디자인의 표현뿐 아니라 사용자가 불편함 없이 정보를 이해하고<br>이동할 수 있는지를 함께 고려합니다.</p>
+                </div>
+              </article>
+              
+              <article class="attitude-card" data-attitude-card>
+                <h3>마지막까지 세부 요소를 확인합니다.</h3>
+                <div class="attitude-card__description">
+                  <p class="attitude-card__label"><span>06</span> DETAIL</p>
+                  <p>마지막까지 세부 요소를 확인합니다. 간격, 정렬, 이미지 크기, 버튼 위치<br>처럼작은 요소까지 반복해서 점검합니다.</p>
+                  <p>완성된 화면도 다시 확인하며 어색한 부분을 수정하고 전체적인<br>완성도를 높입니다.</p>
+                </div>
+              </article>
+            </div>
+          </div>
+        </div>
+
+        <div class="about-section__skills-layout" id="what-i-can-do">
+          <div class="about-section__left about-section__left--skills">
+            <header class="about-section__intro" data-about-intro>
+              <h2 class="about-section__title about-section__title--skills" data-about-title="skills">WHAT<br>I CAN DO
+              </h2>
+              <p class="about-section__lead about-section__lead--skills" data-about-lead="skills">아이디어를 실제 화면으로 완성할 수
+                있습니다.</p>
+            </header>
+          </div>
+
+          <div class="skills-section" data-about-phase="skills" aria-label="사용 가능한 디자인 및 웹 제작 도구">
+            <div class="skills-groups">
+            <section class="skills-group" data-skills-group="0" aria-label="디자인 도구">
+              <article class="skill-card">
+                <header class="skill-card__header">
+                  <img class="skill-card__icon" src="./img/icon-illustrator.svg" alt="" aria-hidden="true">
+                  <h3>Illustrator</h3>
+                  <p class="skill-card__role">Vector Graphic 제작</p>
+                </header>
+                <ul>
+                  <li>아이콘 제작</li>
+                  <li>로고 및 심벌 디자인</li>
+                  <li>Vector Graphic 제작</li>
+                  <li>도형 기반 그래픽 제작</li>
+                  <li>인쇄물 디자인 응용</li>
+                </ul>
+              </article>
+
+              <article class="skill-card">
+                <header class="skill-card__header">
+                  <img class="skill-card__icon" src="./img/icon-photoshop.svg" alt="" aria-hidden="true">
+                  <h3>Photoshop</h3>
+                  <p class="skill-card__role">웹 콘텐츠 편집&amp;이미지 디자인</p>
+                </header>
+                <ul>
+                  <li>이미지 색감 및 톤 보정</li>
+                  <li>합성 및 리터칭</li>
+                  <li>배너·포스터 제작</li>
+                  <li>상세페이지 제작</li>
+                  <li>웹용 이미지 사이즈 및 용량 최적화</li>
+                </ul>
+              </article>
+
+              <article class="skill-card">
+                <header class="skill-card__header">
+                  <img class="skill-card__icon" src="./img/icon-figma.svg" alt="" aria-hidden="true">
+                  <h3>Figma</h3>
+                  <p class="skill-card__role">웹 UI 설계 및 프로토타입 제작</p>
+                </header>
+                <ul>
+                  <li>반응형 레이아웃 설계</li>
+                  <li>Auto Layout</li>
+                  <li>Component 및 Variant 구성</li>
+                  <li>Prototype 제작</li>
+                  <li>협업용 화면·스타일 정리</li>
+                </ul>
+              </article>
+            </section>
+
+            <section class="skills-group" data-skills-group="1" aria-label="웹 퍼블리싱 도구">
+              <article class="skill-card">
+                <header class="skill-card__header">
+                  <img class="skill-card__icon" src="./img/icon-html.svg" alt="" aria-hidden="true">
+                  <h3>HTML</h3>
+                  <p class="skill-card__role">콘텐츠 의미를 고려한 구조 작성</p>
+                </header>
+                <ul>
+                  <li>Semantic Markup</li>
+                  <li>웹페이지 구조 설계</li>
+                  <li>콘텐츠 위계 구성</li>
+                  <li>접근성과 유지보수를 고려한 마크업</li>
+                </ul>
+              </article>
+
+              <article class="skill-card">
+                <header class="skill-card__header">
+                  <img class="skill-card__icon" src="./img/icon-css.svg" alt="" aria-hidden="true">
+                  <h3>CSS</h3>
+                  <p class="skill-card__role">디자인을 실제 웹 화면으로 구현</p>
+                </header>
+                <ul class="skill-card__list--columns">
+                  <li>Flex</li>
+                  <li>Grid</li>
+                  <li>Position</li>
+                  <li>Responsive Web</li>
+                  <li>Media Query</li>
+                  <li>Transition</li>
+                  <li>Hover Interaction</li>
+                  <li>2D·3D Transform</li>
+                </ul>
+              </article>
+
+              <article class="skill-card">
+                <header class="skill-card__header">
+                  <img class="skill-card__icon" src="./img/icon-javascript.svg" alt="" aria-hidden="true">
+                  <h3>JavaScript</h3>
+                  <p class="skill-card__role">기본적 웹 인터랙션 구현</p>
+                </header>
+                <ul class="skill-card__list--columns">
+                  <li>DOM Element 제어</li>
+                  <li>Click / Scroll Event</li>
+                  <li>반복문과 조건문</li>
+                  <li>Tab UI</li>
+                  <li>Accordion</li>
+                  <li>상품 배열 렌더링</li>
+                  <li>Slider Library 활용</li>
+                </ul>
+              </article>
+            </section>
+
+            <section class="skills-group" data-skills-group="2" aria-label="협업 및 관리 도구">
+              <article class="skill-card">
+                <header class="skill-card__header">
+                  <img class="skill-card__icon" src="./img/icon-git.svg" alt="" aria-hidden="true">
+                  <h3>Git &amp; GitHub</h3>
+                  <p class="skill-card__role">버전 관리 및 협업</p>
+                </header>
+                <ul>
+                  <li>Commit을 통한 작업 이력 관리</li>
+                  <li>Branch 생성 및 작업 분리</li>
+                  <li>Repository 생성 및 관리</li>
+                  <li>Pull / Push를 통한 변경 사항 공유</li>
+                  <li>GitHub Pages를 통한 웹사이트 배포</li>
+                </ul>
+              </article>
+
+              <article class="skill-card">
+                <header class="skill-card__header">
+                  <img class="skill-card__icon" src="./img/icon-sourcetree.svg" alt="" aria-hidden="true">
+                  <h3>SourceTree</h3>
+                  <p class="skill-card__role">Git 작업 관리</p>
+                </header>
+                <ul>
+                  <li>변경 파일과 작업 내역 확인</li>
+                  <li>Commit 생성 및 이력 관리</li>
+                  <li>Branch 생성 및 전환</li>
+                  <li>Pull / Push 실행</li>
+                  <li>Merge 과정과 작업 흐름 확인</li>
+                </ul>
+              </article>
+
+              <article class="skill-card">
+                <header class="skill-card__header">
+                  <img class="skill-card__icon" src="./img/icon-notion.svg" alt="" aria-hidden="true">
+                  <h3>Notion</h3>
+                  <p class="skill-card__role">프로젝트 및 문서 관리</p>
+                </header>
+                <ul>
+                  <li>프로젝트 일정 및 진행상황 정리</li>
+                  <li>작업 내용·수정사항 기록</li>
+                  <li>디자인 레퍼런스 아카이빙</li>
+                  <li>업무자료와 학습 노트 관리</li>
+                  <li>협업 목적의 내용 공유</li>
+                </ul>
+              </article>
+            </section>
+          </div>
+        </div>
+      </div>
+
+      </div>
+    </section>
+
+    <section class="section-transition" id="selected-works" data-section-intro data-section-title="SELECTED WORKS"
+      aria-label="SELECTED WORKS 섹션 시작">
+      <div class="section-transition__sticky">
+        <div class="section-transition__tone" aria-hidden="true"></div>
+        <div class="section-transition__wipe" aria-hidden="true">
+          <span></span><span></span><span></span><span></span><span></span>
+        </div>
+        <h2 class="section-transition__title section-transition__title--two-lines">
+          <span>SELECTED</span><span>WORKS</span>
+        </h2>
+      </div>
+    </section>
+
+    <section class="portfolio-section popup-section selected-work-section" id="popup" data-section="popup"
+      data-section-title="SELECTED WORKS" aria-labelledby="popup-title">
+      <header class="popup-section__header section-content-heading" data-section-copy>
+        <h2 class="popup-section__title" id="popup-title">POPUP<br>DESIGN</h2>
+        <p class="popup-section__lead">짧은 순간에도 핵심 메시지가 명확하게 전달되도록 구성했습니다.</p>
+      </header>
+
+      <div class="popup-marquee" data-popup-marquee aria-label="팝업 디자인 작업물">
+        <div class="popup-track" data-popup-track>
+          <div class="popup-list" data-popup-list>
+            <article class="popup-card" data-popup-index="0">
+              <div class="popup-card__float">
+                <div class="popup-card__visual">
+                  <img src="./img/popup-twosome_dessert.png" alt="투썸플레이스 샤인머스켓 케이크 신메뉴 팝업 디자인">
+                  <div class="popup-card__overlay">
+                    <p class="popup-card__brand">A TWOSOME PLACE</p>
+                    <p class="popup-card__type">신메뉴 팝업</p>
+                    <button class="popup-card__button" type="button" data-popup-open="0">
+                      <span>자세히 보기</span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </article>
+
+            <article class="popup-card" data-popup-index="1">
+              <div class="popup-card__float">
+                <div class="popup-card__visual">
+                  <img src="./img/popup-twosome_drink.png" alt="투썸플레이스 화이트 피치 신메뉴 팝업 디자인">
+                  <div class="popup-card__overlay">
+                    <p class="popup-card__brand">A TWOSOME PLACE</p>
+                    <p class="popup-card__type">신메뉴 팝업</p>
+                    <button class="popup-card__button" type="button" data-popup-open="1">
+                      <span>자세히 보기</span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </article>
+
+            <article class="popup-card" data-popup-index="2">
+              <div class="popup-card__float">
+                <div class="popup-card__visual">
+                  <img src="./img/popup-torriden.png" alt="올리브영과 토리든 협업 프로모션 팝업 디자인">
+                  <div class="popup-card__overlay">
+                    <p class="popup-card__brand">OLIVE YOUNG × TORRIDEN</p>
+                    <p class="popup-card__type">브랜드 협업 팝업</p>
+                    <button class="popup-card__button" type="button" data-popup-open="2">
+                      <span>자세히 보기</span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </article>
+
+            <article class="popup-card" data-popup-index="3">
+              <div class="popup-card__float">
+                <div class="popup-card__visual">
+                  <img src="./img/popup-peripera.png" alt="올리브영과 페리페라 협업 프로모션 팝업 디자인">
+                  <div class="popup-card__overlay">
+                    <p class="popup-card__brand">OLIVE YOUNG × PERIPERA</p>
+                    <p class="popup-card__type">브랜드 협업 팝업</p>
+                    <button class="popup-card__button" type="button" data-popup-open="3">
+                      <span>자세히 보기</span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </article>
+
+            <article class="popup-card" data-popup-index="4">
+              <div class="popup-card__float">
+                <div class="popup-card__visual">
+                  <img src="./img/popup-rockfish.png" alt="락피쉬웨더웨어 봄 시즌 세일 팝업 디자인">
+                  <div class="popup-card__overlay">
+                    <p class="popup-card__brand">ROCKFISH WEATHERWEAR</p>
+                    <p class="popup-card__type">시즌 세일 팝업</p>
+                    <button class="popup-card__button" type="button" data-popup-open="4">
+                      <span>자세히 보기</span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </article>
+
+            <article class="popup-card" data-popup-index="5">
+              <div class="popup-card__float">
+                <div class="popup-card__visual">
+                  <img src="./img/popup-netflix_thriller.png" alt="넷플릭스 스릴러 콘텐츠 프로모션 팝업 디자인">
+                  <div class="popup-card__overlay">
+                    <p class="popup-card__brand">NETFLIX THRILLER</p>
+                    <p class="popup-card__type">콘텐츠 프로모션 팝업</p>
+                    <button class="popup-card__button" type="button" data-popup-open="5">
+                      <span>자세히 보기</span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </article>
+
+            <article class="popup-card" data-popup-index="6">
+              <div class="popup-card__float">
+                <div class="popup-card__visual">
+                  <img src="./img/popup-netflix_romance.png" alt="넷플릭스 로맨스 콘텐츠 프로모션 팝업 디자인">
+                  <div class="popup-card__overlay">
+                    <p class="popup-card__brand">NETFLIX ROMANCE</p>
+                    <p class="popup-card__type">콘텐츠 프로모션 팝업</p>
+                    <button class="popup-card__button" type="button" data-popup-open="6">
+                      <span>자세히 보기</span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </article>
+
+            <article class="popup-card" data-popup-index="7">
+              <div class="popup-card__float">
+                <div class="popup-card__visual">
+                  <img src="./img/popup-nike.png" alt="나이키 러닝 시즌 세일 팝업 디자인">
+                  <div class="popup-card__overlay">
+                    <p class="popup-card__brand">NIKE</p>
+                    <p class="popup-card__type">시즌 세일 팝업</p>
+                    <button class="popup-card__button" type="button" data-popup-open="7">
+                      <span>자세히 보기</span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </article>
+          </div>
+        </div>
+      </div>
+
+      <dialog class="popup-modal" data-popup-modal aria-labelledby="popup-modal-title"
+        aria-describedby="popup-modal-description">
+        <div class="popup-modal__inner">
+          <button class="popup-modal__close" type="button" data-popup-close aria-label="상세 팝업 닫기"><img src="./img/close-blk.svg" alt="팝업디자인 모달팝업 닫기 버튼"></button>
+          <div class="popup-modal__image-wrap">
+            <img class="popup-modal__image" src="./img/popup-twosome_dessert.png" alt="" data-popup-modal-image>
+          </div>
+          <div class="popup-modal__content">
+            <p class="popup-modal__count" data-popup-modal-count>01 / 08</p>
+            <h3 id="popup-modal-title" data-popup-modal-title>A TWOSOME PLACE</h3>
+            <p id="popup-modal-description" data-popup-modal-description></p>
+          </div>
+        </div>
+      </dialog>
+    </section>
+
+    <section class="portfolio-section selected-work-section poster-section" id="poster" data-section="poster"
+      data-section-title="SELECTED WORKS" aria-labelledby="poster-title">
+      <aside class="poster-section__rail">
+        <header class="section-content-heading poster-section__heading" data-section-copy>
+          <h2 id="poster-title">POSTER<br>DESIGN</h2>
+          <p>주제에 맞는 비주얼과 정보의 위계를<br>고려해 시선을 효과적으로 유도했습니다.</p>
+        </header>
+
+        <nav class="poster-nav" aria-label="포스터 작품 바로가기">
+          <a class="poster-nav__link is-active" href="#poster-mac" data-poster-nav="poster-mac"
+            aria-current="true">MAC</a>
+          <a class="poster-nav__link" href="#poster-sony" data-poster-nav="poster-sony">SONY</a>
+          <a class="poster-nav__link" href="#poster-on-running" data-poster-nav="poster-on-running">ON RUNNING</a>
+          <a class="poster-nav__link" href="#poster-iloom" data-poster-nav="poster-iloom">ILOOM</a>
+        </nav>
+      </aside>
+
+      <div class="poster-section__works">
+        <article class="poster-work" id="poster-mac" data-poster-work>
+          <img class="poster-work__image" src="./img/poster-mac.jpg"
+            alt="MAC RED ICON 한정판 립스틱 포스터 디자인">
+          <div class="poster-work__copy">
+            <h3>MAC LIMITED EDITION</h3>
+            <p>강렬한 레드와 블랙 컬러 대비를 활용해<br>브랜드 특유의 시크하고 감각적인 무드를<br>강조했습니다.</p>
+            <p>인물과 립 제품을 과감하게 배치하고,<br>큰 타이포그래피로 시선을 집중시켜<br>한정판 제품의 임팩트를 표현했습니다.</p>
+          </div>
+        </article>
+
+        <article class="poster-work" id="poster-sony" data-poster-work>
+          <img class="poster-work__image" src="./img/poster-sony.jpg"
+            alt="SONY 노이즈 캔슬링 헤드폰 포스터 디자인">
+          <div class="poster-work__copy">
+            <h3>SONY</h3>
+            <p>헤드폰을 화면 중앙에 크게 배치해<br>제품에 시선이 집중되도록 구성했습니다.</p>
+            <p>대칭적인 공간과 어두운 배경, 빛의 연출을<br>활용해 외부 소음과 분리된 듯한<br>몰입감을 표현하고 노이즈 캔슬링 기능을<br>시각적으로 강조했습니다.</p>
+          </div>
+        </article>
+
+        <article class="poster-work" id="poster-on-running" data-poster-work>
+          <img class="poster-work__image" src="./img/poster-onrunning.jpg" alt="ON RUNNING 러닝화 포스터 디자인">
+          <div class="poster-work__copy">
+            <h3>ON RUNNING</h3>
+            <p>푸른 하늘과 구름을 배경으로<br>러닝화를 공중에 띄워 가볍고 부드러운<br>착화감을 표현했습니다.</p>
+            <p>밝은 블루와 화이트 컬러,<br>큼직한 타이포그래피를 활용해<br>경쾌하고 활동적인 브랜드 이미지를<br>강조했습니다.</p>
+          </div>
+        </article>
+
+        <article class="poster-work" id="poster-iloom" data-poster-work>
+          <img class="poster-work__image" src="./img/poster-iloom.jpg" alt="ILOOM 거실 가구 포스터 디자인">
+          <div class="poster-work__copy">
+            <h3>ILOOM</h3>
+            <p>따뜻한 베이지 톤의 거실 공간을<br>중심으로 구성해 편안하고 안정적인<br>주거 분위기를 표현했습니다.</p>
+            <p>소파를 중심에 배치하고 손그림 드로잉<br>요소를 더해 일상 속 친근함과 브랜드의<br>따뜻한 이미지를 강조했습니다.</p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="portfolio-section selected-work-section banner-section" id="banner" data-section="banner"
+      data-section-title="SELECTED WORKS" aria-labelledby="banner-title">
+      <header class="banner-section__header section-content-heading" data-section-copy>
+        <h2 id="banner-title">BANNER<br>DESIGN</h2>
+        <p>브랜드의 분위기를 반영해 주목도 높은 이미지와 문구를 구성했습니다.</p>
+      </header>
+
+      <div class="banner-slider" data-banner-slider tabindex="0" role="region" aria-roledescription="carousel"
+        aria-label="배너 디자인 작업물">
+        <div class="banner-slider__viewport">
+          <div class="banner-slider__track" data-banner-track>
+            <article class="banner-slide is-active" data-banner-slide aria-hidden="false">
+              <div class="banner-slide__card">
+                <div class="banner-slide__copy">
+                  <p class="banner-slide__number">01</p>
+                  <h3>GENTLE MONSTER</h3>
+                  <p>화이트 배경과 넓은 여백을 활용해 젠틀몬스터 특유의 세련되고 감각적인 무드를 표현했습니다.</p>
+                  <p>안경 제품과 모델을 비대칭으로 배치해 시선을 자연스럽게 이동시키고, 컬렉션의 패셔너블한 이미지를 강조했습니다.</p>
+                </div>
+                <figure class="banner-slide__visual">
+                  <img src="./img/banner-gentle_monster.jpg" alt="젠틀몬스터 2026 스페셜 시즌 히어로 배너">
+                </figure>
+              </div>
+            </article>
+
+            <article class="banner-slide" data-banner-slide aria-hidden="true">
+              <div class="banner-slide__card">
+                <div class="banner-slide__copy">
+                  <p class="banner-slide__number">02</p>
+                  <h3>AESOP</h3>
+                  <p>베이지와 브라운 계열의 차분한 색감과 자연 소재를 활용해 이솝의 내추럴하고 고급스러운 이미지를 표현했습니다.</p>
+                  <p>제품을 안정감 있게 배치하고 절제된 타이포그래피로 정돈된 브랜드 무드를 강조했습니다.</p>
+                </div>
+                <figure class="banner-slide__visual">
+                  <img src="./img/banner-aesop.jpg" alt="이솝 아로마틱 라인 히어로 배너">
+                </figure>
+              </div>
+            </article>
+
+            <article class="banner-slide" data-banner-slide aria-hidden="true">
+              <div class="banner-slide__card">
+                <div class="banner-slide__copy">
+                  <p class="banner-slide__number">03</p>
+                  <h3>NULDAM</h3>
+                  <p>화이트와 블루 컬러를 중심으로 밝고 신뢰감 있는 분위기를 구성했습니다.</p>
+                  <p>제품 이미지를 크게 배치해 주목도를 높이고, 핵심 문구와 버튼을 명확히 구분해 건강 간식의 장점을 직관적으로 전달했습니다.</p>
+                </div>
+                <figure class="banner-slide__visual">
+                  <img src="./img/banner-nuldam.jpg" alt="널담 고객 감사 할인 히어로 배너">
+                </figure>
+              </div>
+            </article>
+
+            <article class="banner-slide" data-banner-slide aria-hidden="true">
+              <div class="banner-slide__card">
+                <div class="banner-slide__copy">
+                  <p class="banner-slide__number">04</p>
+                  <h3>YOUTUBE MUSIC</h3>
+                  <p>블랙 배경과 강렬한 인물 이미지를 활용해 음악에 몰입하는 순간의 에너지를 표현했습니다.</p>
+                  <p>굵은 화이트 타이포와 레드 버튼을 대비시켜 메시지와 CTA의 주목도를 높이고 역동적인 분위기를 강조했습니다.</p>
+                </div>
+                <figure class="banner-slide__visual">
+                  <img src="./img/banner-youtube_music.jpg" alt="유튜브 뮤직 히어로 배너">
+                </figure>
+              </div>
+            </article>
+          </div>
+        </div>
+
+        <div class="banner-slider__pagination" role="group" aria-label="배너 슬라이드 선택">
+          <button class="banner-slider__dot is-active" type="button" data-banner-dot="0"
+            aria-label="GENTLE MONSTER 배너 보기" aria-current="true"></button>
+          <button class="banner-slider__dot" type="button" data-banner-dot="1" aria-label="AESOP 배너 보기"></button>
+          <button class="banner-slider__dot" type="button" data-banner-dot="2" aria-label="NULDAM 배너 보기"></button>
+          <button class="banner-slider__dot" type="button" data-banner-dot="3"
+            aria-label="YOUTUBE MUSIC 배너 보기"></button>
+        </div>
+        <p class="sr-only" aria-live="polite" data-banner-status>1 / 4, GENTLE MONSTER</p>
+      </div>
+    </section>
+
+    <section class="portfolio-section selected-work-section detail-showcase" id="detail-page"
+      data-section="detail-page" data-section-title="SELECTED WORKS" aria-labelledby="detail-title">
+      <header class="detail-showcase__header section-content-heading" data-section-copy>
+        <h2 id="detail-title">DETAIL PAGE</h2>
+        <p>제품의 특징과 장점이 자연스러운 흐름으로 전달되도록 설계했습니다.</p>
+      </header>
+
+      <div class="detail-showcase__grid" aria-label="상세페이지 디자인 작업물">
+        <article class="detail-card" data-detail-card>
+          <figure class="detail-card__media">
+            <img src="./img/haagendazs-cover.jpg" alt="하겐다즈 딸기 아이스크림 상세페이지 표지">
+            <figcaption class="detail-card__overlay">
+              <a class="detail-card__cta" href="./detail-haagendazs.html" target="_blank" rel="noopener"
+                aria-label="Häagen-Dazs 상세페이지 새 창에서 보기">자세히 보기</a>
+            </figcaption>
+          </figure>
+          <div class="detail-card__caption">
+            <h3>Häagen-Dazs</h3>
+            <p>프리미엄 아이스크림의 맛과 감성을 풍부하게 담아낸 Häagen-Dazs 상세페이지</p>
+          </div>
+        </article>
+
+        <article class="detail-card" data-detail-card>
+          <figure class="detail-card__media">
+            <img src="./img/veilune-cover.jpg" alt="베일룬 세럼 상세페이지 표지">
+            <figcaption class="detail-card__overlay">
+              <a class="detail-card__cta" href="./detail-veilune.html" target="_blank" rel="noopener"
+                aria-label="VEILUNE 상세페이지 새 창에서 보기">자세히 보기</a>
+            </figcaption>
+          </figure>
+          <div class="detail-card__caption">
+            <h3>VEILUNE</h3>
+            <p>촉촉한 수분감과 깨끗한 제품 이미지를 시각적으로 표현한 VEILUNE 세럼 상세페이지</p>
+          </div>
+        </article>
+
+        <article class="detail-card" data-detail-card>
+          <figure class="detail-card__media">
+            <img src="./img/sony-cover.jpg" alt="소니 헤드폰 상세페이지 표지">
+            <figcaption class="detail-card__overlay">
+              <a class="detail-card__cta" href="./detail-sony.html" target="_blank" rel="noopener"
+                aria-label="SONY 상세페이지 새 창에서 보기">자세히 보기</a>
+            </figcaption>
+          </figure>
+          <div class="detail-card__caption">
+            <h3>SONY</h3>
+            <p>도시의 소음을 넘어, 몰입의 순간을 시각화한 SONY 헤드셋 상세페이지</p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="section-transition" id="web-projects" data-section-intro data-section-title="WEB PROJECTS"
+      aria-label="WEB PROJECTS 섹션 시작">
+      <div class="section-transition__sticky">
+        <div class="section-transition__tone" aria-hidden="true"></div>
+        <div class="section-transition__wipe" aria-hidden="true">
+          <span></span><span></span><span></span><span></span><span></span>
+        </div>
+        <h2 class="section-transition__title section-transition__title--two-lines"><span>WEB</span><span>PROJECTS</span>
+        </h2>
+      </div>
+    </section>
+
+    <section class="portfolio-section" id="romand" data-section="romand" data-section-title="WEB PROJECTS"
+      aria-labelledby="romand-title">
+      <header class="section-content-heading" data-section-copy>
+        <h2 id="romand-title">ROM&amp;ND</h2>
+        <p>PORTFOLIO SECTION</p>
+      </header>
+    </section>
+
+    <section class="portfolio-section" id="orum" data-section="orum" data-section-title="WEB PROJECTS"
+      aria-labelledby="orum-title">
+      <header class="section-content-heading" data-section-copy>
+        <h2 id="orum-title">O’RUM</h2>
+        <p>PORTFOLIO SECTION</p>
+      </header>
+    </section>
+
+    <section class="section-transition" id="contact" data-section-intro data-section-title="CONTACT"
+      aria-label="CONTACT 섹션 시작">
+      <div class="section-transition__sticky">
+        <div class="section-transition__tone" aria-hidden="true"></div>
+        <div class="section-transition__wipe" aria-hidden="true">
+          <span></span><span></span><span></span><span></span><span></span>
+        </div>
+        <h2 class="section-transition__title">CONTACT</h2>
+      </div>
+    </section>
+
+    <section class="portfolio-section" id="contact-content" data-section="contact" data-section-title="CONTACT"
+      aria-labelledby="contact-title">
+      <header class="section-content-heading" data-section-copy>
+        <h2 id="contact-title">CONTACT</h2>
+        <p>PROFILE SECTION</p>
+      </header>
+    </section>
+
+    <section class="portfolio-section" id="resume" data-section="resume" data-section-title="CONTACT"
+      aria-labelledby="resume-title">
+      <header class="section-content-heading" data-section-copy>
+        <h2 id="resume-title">RESUME</h2>
+        <p>PROFILE SECTION</p>
+      </header>
+    </section>
+  </main>
+</body>
+
+</html>
