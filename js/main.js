@@ -1,4 +1,5 @@
 (() => {
+  /* DOM references and shared runtime state */
   const root = document.documentElement;
   const siteHeader = document.querySelector(".site-header");
   const headerSectionTitle = document.querySelector("[data-header-section-title]");
@@ -18,7 +19,6 @@
   const hero = document.querySelector(".hero");
   const heroScrollCue = document.querySelector(".hero__scroll-cue");
   const sphereCover = document.querySelector(".hero__sphere-cover");
-  const skillGroups = [...document.querySelectorAll("[data-skills-group]")];
   const popupMarquee = document.querySelector("[data-popup-marquee]");
   const popupTrack = document.querySelector("[data-popup-track]");
   const popupList = document.querySelector("[data-popup-list]");
@@ -39,6 +39,9 @@
   const menuLinks = [...document.querySelectorAll(".menu-panel a")];
   const submenuToggles = [...document.querySelectorAll("[data-submenu-toggle]")];
   const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+  const SECTION_TITLE_TRAVEL_MS = 1150;
+  const SECTION_TITLE_HOLD_MS = 500;
+  const NAV_SECTION_TITLE_HOLD_MS = 250;
   const lenis = reduceMotion.matches || typeof Lenis === "undefined"
     ? null
     : new Lenis({
@@ -165,8 +168,6 @@
   ];
 
   const setupAboutReveal = () => {
-    skillGroups.forEach((group) => group.removeAttribute("aria-hidden"));
-
     if (reduceMotion.matches || !("IntersectionObserver" in window)) {
       aboutRevealItems.forEach((item) => item.classList.add("is-revealed"));
       return;
@@ -176,7 +177,7 @@
       entries.forEach((entry) => {
         if (!entry.isIntersecting) return;
         const item = entry.target;
-        const group = item.closest(".skills-group, .attitude-grid");
+        const group = item.closest(".skills-grid, .attitude-grid");
         const siblings = group
           ? [...group.querySelectorAll(".skill-card, .attitude-card")]
           : [];
@@ -190,8 +191,7 @@
     aboutRevealItems.forEach((item) => observer.observe(item));
   };
 
-  const updateAboutSection = () => {};
-
+  /* Section transitions, header title and scroll-linked copy */
   const getSectionTransitionProgress = (section) => {
     if (!section) return 0;
 
@@ -351,7 +351,6 @@
     updateHeaderVisibility();
     updateSectionTransitions();
     updateHeaderSectionTitle();
-    updateAboutSection();
     updateSectionCopies();
     updatePosterNavigation();
 
@@ -387,6 +386,7 @@
     window.requestAnimationFrame(updatePage);
   };
 
+  /* Popup gallery and modal */
   const getPopupCards = () => [...(popupTrack?.querySelectorAll(".popup-card") || [])];
 
   const clearPopupCardStates = () => {
@@ -629,6 +629,7 @@
     if (!reduceMotion.matches) window.requestAnimationFrame(animatePopupTrack);
   };
 
+  /* Poster reveal and navigation */
   const setupPosterSection = () => {
     if (!posterWorks.length) return;
 
@@ -665,6 +666,7 @@
     });
   };
 
+  /* Seamless banner slider */
   const getNormalizedBannerIndex = (index) => {
     if (!bannerSlides.length) return 0;
     return ((index % bannerSlides.length) + bannerSlides.length) % bannerSlides.length;
@@ -971,7 +973,8 @@
     });
   };
 
-  const startGuidedSectionScroll = (event, introId, contentId) => {
+  /* Guided navigation through each section title frame */
+  const startGuidedSectionScroll = (event, introId, contentId, holdDuration = SECTION_TITLE_HOLD_MS) => {
     const introSection = document.getElementById(introId);
     const contentSection = document.getElementById(contentId);
     if (!introSection || !contentSection) return false;
@@ -990,7 +993,7 @@
     const titleFrameY = introTop + introDistance * 0.43;
     siteHeader?.classList.remove("is-hidden");
     if (lenis) {
-      lenis.scrollTo(titleFrameY, { duration: 1.15 });
+      lenis.scrollTo(titleFrameY, { duration: SECTION_TITLE_TRAVEL_MS / 1000 });
     } else {
       window.scrollTo({ top: titleFrameY, behavior: "smooth" });
     }
@@ -1002,7 +1005,7 @@
       } else {
         contentSection.scrollIntoView({ behavior: "smooth", block: "start" });
       }
-    }, 1650);
+    }, SECTION_TITLE_TRAVEL_MS + holdDuration);
     return true;
   };
 
@@ -1036,7 +1039,7 @@
     const introId = link.dataset.navIntro;
     const contentId = link.dataset.navContent;
     if (!introId || !contentId) return false;
-    return startGuidedSectionScroll(event, introId, contentId);
+    return startGuidedSectionScroll(event, introId, contentId, NAV_SECTION_TITLE_HOLD_MS);
   };
 
   const setupDetailCardStateReset = () => {
