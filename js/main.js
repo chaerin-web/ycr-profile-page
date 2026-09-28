@@ -220,7 +220,6 @@
 
       const progress = getSectionTransitionProgress(section);
       const isAboutIntro = section.id === "about-me";
-<<<<<<< HEAD
       const isCompactIntro = section.id === "web-projects";
       const isFlowIntro = section.id === "selected-works" || section.id === "web-projects" || section.id === "contact";
       const toneStart = isAboutIntro ? 0.035 : isFlowIntro ? 0 : 0.2;
@@ -229,15 +228,6 @@
       const titleEnterDuration = isAboutIntro ? 0.1 : isCompactIntro ? 0.13 : 0.17;
       const titleEnter = smoothstep(clamp((progress - titleStart) / titleEnterDuration));
       const titleExit = smoothstep(clamp((progress - (isFlowIntro ? 0.82 : 0.74)) / (isFlowIntro ? 0.16 : 0.14)));
-=======
-      const isCompactIntro = section.id === "web-projects" || section.id === "contact";
-      const toneStart = isAboutIntro ? 0.035 : isCompactIntro ? 0.06 : 0.2;
-      const titleStart = isAboutIntro ? 0.065 : isCompactIntro ? 0.08 : 0.2;
-      const toneProgress = smoothstep(clamp((progress - toneStart) / (0.74 - toneStart)));
-      const titleEnterDuration = isAboutIntro ? 0.1 : isCompactIntro ? 0.13 : 0.17;
-      const titleEnter = smoothstep(clamp((progress - titleStart) / titleEnterDuration));
-      const titleExit = smoothstep(clamp((progress - 0.74) / 0.14));
->>>>>>> be38ef1d3a134e35327a1abf309eed55a0dae9f7
       const titleOffset = 26 * (1 - titleEnter) - 22 * titleExit;
 
       tone.style.opacity = toneProgress.toFixed(3);
@@ -245,17 +235,10 @@
       title.style.transform = `translate3d(-50%, calc(-50% + ${titleOffset.toFixed(2)}px), 0)`;
 
       wipeSteps.forEach((step, index) => {
-<<<<<<< HEAD
         const coverStart = (isAboutIntro ? 0.005 : isFlowIntro ? 0 : 0.035)
           + index * (isAboutIntro ? 0.014 : isCompactIntro ? 0.018 : 0.028);
         const coverEnd = coverStart + (isAboutIntro ? 0.105 : isCompactIntro ? 0.14 : 0.19);
         const revealStart = (isFlowIntro ? 0.72 : 0.6) + index * (isFlowIntro ? 0.028 : 0.024);
-=======
-        const coverStart = (isAboutIntro ? 0.005 : isCompactIntro ? 0.012 : 0.035)
-          + index * (isAboutIntro ? 0.014 : isCompactIntro ? 0.018 : 0.028);
-        const coverEnd = coverStart + (isAboutIntro ? 0.105 : isCompactIntro ? 0.14 : 0.19);
-        const revealStart = 0.6 + index * 0.024;
->>>>>>> be38ef1d3a134e35327a1abf309eed55a0dae9f7
         const revealEnd = revealStart + 0.16;
         const cover = smoothstep(clamp((progress - coverStart) / (coverEnd - coverStart)));
         const reveal = smoothstep(clamp((progress - revealStart) / (revealEnd - revealStart)));
