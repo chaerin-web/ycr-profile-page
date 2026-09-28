@@ -151,7 +151,11 @@
 .web-project-section.portfolio-section {
   min-height: 0;
   padding: 0;
+<<<<<<< HEAD
   overflow: clip;
+=======
+  overflow: hidden;
+>>>>>>> be38ef1d3a134e35327a1abf309eed55a0dae9f7
   background: #fff;
 }
 
@@ -169,6 +173,7 @@
   height: auto;
 }
 
+<<<<<<< HEAD
 /* The exported ROM&ND artwork has empty white pixels after its last project content. */
 #romand .web-project-section__picture {
   height: 436.63vw;
@@ -294,6 +299,11 @@
 
 /* Only Web Projects uses the abbreviated title transition. */
 #web-projects.section-transition {
+=======
+/* Web Projects and Contact use a shorter transition so content follows promptly. */
+#web-projects.section-transition,
+#contact.section-transition {
+>>>>>>> be38ef1d3a134e35327a1abf309eed55a0dae9f7
   height: 165svh;
 }
 
@@ -321,7 +331,11 @@
   display: none;
 }
 
+<<<<<<< HEAD
 .contact-section.portfolio-section > .contact-section__background {
+=======
+.contact-section__background {
+>>>>>>> be38ef1d3a134e35327a1abf309eed55a0dae9f7
   position: absolute;
   z-index: 0;
   inset: 0;
@@ -364,14 +378,24 @@
   z-index: 1;
   top: 50%;
   left: 50%;
+<<<<<<< HEAD
   width: clamp(620px, 55vw, 1060px);
   max-width: none;
   opacity: 1;
+=======
+  width: clamp(300px, 29vw, 540px);
+  max-width: none;
+  opacity: 0.74;
+>>>>>>> be38ef1d3a134e35327a1abf309eed55a0dae9f7
   transform: translate3d(-50%, -50%, 0);
   animation: contactSphereFloat 8s ease-in-out infinite;
 }
 
+<<<<<<< HEAD
 .contact-section.portfolio-section > .contact-section__content {
+=======
+.contact-section__content {
+>>>>>>> be38ef1d3a134e35327a1abf309eed55a0dae9f7
   position: relative;
   z-index: 2;
   width: min(100%, 1460px);
@@ -384,7 +408,11 @@
   font-size: clamp(64px, 6.1vw, 116px);
   font-weight: 900;
   line-height: 0.92;
+<<<<<<< HEAD
   letter-spacing: normal;
+=======
+  letter-spacing: -0.045em;
+>>>>>>> be38ef1d3a134e35327a1abf309eed55a0dae9f7
 }
 
 .contact-section__card {
@@ -565,7 +593,12 @@
 
 /* Tablet */
 @media (max-width: 1024px) {
+<<<<<<< HEAD
   #web-projects.section-transition {
+=======
+  #web-projects.section-transition,
+  #contact.section-transition {
+>>>>>>> be38ef1d3a134e35327a1abf309eed55a0dae9f7
     height: 158svh;
   }
 
@@ -632,13 +665,18 @@
   }
 
   .contact-section__sphere {
+<<<<<<< HEAD
     width: clamp(560px, 78vw, 850px);
+=======
+    width: clamp(280px, 40vw, 420px);
+>>>>>>> be38ef1d3a134e35327a1abf309eed55a0dae9f7
   }
 }
 
 /* Mobile */
 @media (max-width: 768px) {
 
+<<<<<<< HEAD
   #romand .web-project-section__picture {
     height: 1204.3vw;
   }
@@ -677,6 +715,13 @@
   .web-project-section__link--branding { width: 27.6vw; }
   .web-project-section__button-layer--orum .web-project-section__link--figma { width: 14.5vw; }
 
+=======
+  #web-projects.section-transition,
+  #contact.section-transition {
+    height: 150svh;
+  }
+
+>>>>>>> be38ef1d3a134e35327a1abf309eed55a0dae9f7
   /* DESIGN ATTITUDE becomes a readable document flow on narrow screens. */
   .attitude-layout {
     display: block;
@@ -851,8 +896,13 @@
 
   .contact-section__sphere {
     top: 48%;
+<<<<<<< HEAD
     width: clamp(550px, 135vw, 840px);
     opacity: 1;
+=======
+    width: clamp(240px, 62vw, 360px);
+    opacity: 0.6;
+>>>>>>> be38ef1d3a134e35327a1abf309eed55a0dae9f7
   }
 }
 
@@ -924,11 +974,14 @@
 
 @media (prefers-reduced-motion: reduce) {
 
+<<<<<<< HEAD
   .web-project-section__link,
   .web-project-link-notice {
     transition: none !important;
   }
 
+=======
+>>>>>>> be38ef1d3a134e35327a1abf309eed55a0dae9f7
   .contact-section__beam,
   .contact-section__light,
   .contact-section__sphere {
