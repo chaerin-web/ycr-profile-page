@@ -970,7 +970,7 @@
 
 .skill-card ul {
   margin: 30px 0 0;
-  padding: 0 0 0 1.15em;
+  padding: 0 8rem 0 1.15em;
   font-size: 16px;
   font-weight: 400;
   line-height: 1.55;
@@ -4167,7 +4167,7 @@ body.is-detail-hover-reset .detail-card__cta {
 .detail-showcase .detail-card__caption p {
   margin-top: 5px;
   color: #817773;
-  font-size: 12px;
+  font-size: 1rem;
   font-weight: 400;
   line-height: 1.45;
 }

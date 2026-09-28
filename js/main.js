@@ -36,7 +36,7 @@
   const bannerSlides = [...(bannerSlider?.querySelectorAll("[data-banner-slide]") || [])];
   const bannerDots = [...(bannerSlider?.querySelectorAll("[data-banner-dot]") || [])];
   const bannerStatus = bannerSlider?.querySelector("[data-banner-status]");
-  const menuLinks = [...document.querySelectorAll(".menu-panel a")];
+  const menuLinks = [...document.querySelectorAll(".menu-panel a, .site-header__contact")];
   const submenuToggles = [...document.querySelectorAll("[data-submenu-toggle]")];
   const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
   const SECTION_TITLE_TRAVEL_MS = 1150;
@@ -173,10 +173,15 @@
       return;
     }
 
-    const observer = new IntersectionObserver((entries, revealObserver) => {
+    const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
-        if (!entry.isIntersecting) return;
         const item = entry.target;
+        if (!entry.isIntersecting) {
+          item.style.setProperty("--about-reveal-delay", "0ms");
+          item.classList.remove("is-revealed");
+          return;
+        }
+
         const group = item.closest(".skills-grid, .attitude-grid");
         const siblings = group
           ? [...group.querySelectorAll(".skill-card, .attitude-card")]
@@ -184,9 +189,8 @@
         const order = Math.max(siblings.indexOf(item), 0);
         item.style.setProperty("--about-reveal-delay", `${Math.min(order * 90, 240)}ms`);
         item.classList.add("is-revealed");
-        revealObserver.unobserve(item);
       });
-    }, { threshold: 0.14, rootMargin: "0px 0px -6% 0px" });
+    }, { threshold: 0.12, rootMargin: "-4% 0px -6% 0px" });
 
     aboutRevealItems.forEach((item) => observer.observe(item));
   };
@@ -216,10 +220,12 @@
 
       const progress = getSectionTransitionProgress(section);
       const isAboutIntro = section.id === "about-me";
-      const toneStart = isAboutIntro ? 0.035 : 0.2;
-      const titleStart = isAboutIntro ? 0.065 : 0.2;
+      const isCompactIntro = section.id === "web-projects" || section.id === "contact";
+      const toneStart = isAboutIntro ? 0.035 : isCompactIntro ? 0.06 : 0.2;
+      const titleStart = isAboutIntro ? 0.065 : isCompactIntro ? 0.08 : 0.2;
       const toneProgress = smoothstep(clamp((progress - toneStart) / (0.74 - toneStart)));
-      const titleEnter = smoothstep(clamp((progress - titleStart) / (isAboutIntro ? 0.1 : 0.17)));
+      const titleEnterDuration = isAboutIntro ? 0.1 : isCompactIntro ? 0.13 : 0.17;
+      const titleEnter = smoothstep(clamp((progress - titleStart) / titleEnterDuration));
       const titleExit = smoothstep(clamp((progress - 0.74) / 0.14));
       const titleOffset = 26 * (1 - titleEnter) - 22 * titleExit;
 
@@ -228,8 +234,9 @@
       title.style.transform = `translate3d(-50%, calc(-50% + ${titleOffset.toFixed(2)}px), 0)`;
 
       wipeSteps.forEach((step, index) => {
-        const coverStart = (isAboutIntro ? 0.005 : 0.035) + index * (isAboutIntro ? 0.014 : 0.028);
-        const coverEnd = coverStart + (isAboutIntro ? 0.105 : 0.19);
+        const coverStart = (isAboutIntro ? 0.005 : isCompactIntro ? 0.012 : 0.035)
+          + index * (isAboutIntro ? 0.014 : isCompactIntro ? 0.018 : 0.028);
+        const coverEnd = coverStart + (isAboutIntro ? 0.105 : isCompactIntro ? 0.14 : 0.19);
         const revealStart = 0.6 + index * 0.024;
         const revealEnd = revealStart + 0.16;
         const cover = smoothstep(clamp((progress - coverStart) / (coverEnd - coverStart)));

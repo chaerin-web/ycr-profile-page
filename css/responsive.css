@@ -147,6 +147,224 @@
   object-fit: cover;
 }
 
+/* Web Projects: each project is supplied as one responsive presentation image. */
+.web-project-section.portfolio-section {
+  min-height: 0;
+  padding: 0;
+  overflow: hidden;
+  background: #fff;
+}
+
+.web-project-section.portfolio-section::before {
+  display: none;
+}
+
+.web-project-section__picture,
+.web-project-section__image {
+  display: block;
+  width: 100%;
+}
+
+.web-project-section__image {
+  height: auto;
+}
+
+/* Web Projects and Contact use a shorter transition so content follows promptly. */
+#web-projects.section-transition,
+#contact.section-transition {
+  height: 165svh;
+}
+
+#contact {
+  --transition-from: #fff;
+  --transition-to: var(--hero-bg);
+}
+
+/* Match the DETAIL PAGE subtitle to the other SELECTED WORKS subtitles. */
+.detail-showcase .detail-showcase__header p {
+  color: #170000;
+}
+
+/* Contact */
+.contact-section.portfolio-section {
+  display: grid;
+  min-height: 100svh;
+  place-items: center;
+  padding: clamp(96px, 8vw, 142px) var(--section-title-padding-x) clamp(54px, 5vw, 88px);
+  overflow: hidden;
+  background: var(--hero-bg);
+}
+
+.contact-section.portfolio-section::before {
+  display: none;
+}
+
+.contact-section__background {
+  position: absolute;
+  z-index: 0;
+  inset: 0;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 31% 22%, rgba(255, 253, 248, 0.9), transparent 36%),
+    linear-gradient(135deg, #fffaf4 0%, #f3e9de 54%, #e8d9ca 100%);
+  pointer-events: none;
+}
+
+.contact-section__beam {
+  position: absolute;
+  top: -22%;
+  left: -12%;
+  width: 62%;
+  height: 100%;
+  background: linear-gradient(116deg,
+      transparent 15%,
+      rgba(255, 255, 245, 0.68) 43%,
+      rgba(255, 252, 240, 0.22) 56%,
+      transparent 73%);
+  filter: blur(18px);
+  transform: rotate(-8deg);
+  animation: beamFlow 10s ease-in-out infinite;
+}
+
+.contact-section__light {
+  position: absolute;
+  right: -7%;
+  bottom: -5%;
+  width: 114%;
+  max-width: none;
+  mix-blend-mode: screen;
+  opacity: 0.62;
+  animation: lightFlow 8s ease-in-out infinite;
+}
+
+.contact-section__sphere {
+  position: absolute;
+  z-index: 1;
+  top: 50%;
+  left: 50%;
+  width: clamp(300px, 29vw, 540px);
+  max-width: none;
+  opacity: 0.74;
+  transform: translate3d(-50%, -50%, 0);
+  animation: contactSphereFloat 8s ease-in-out infinite;
+}
+
+.contact-section__content {
+  position: relative;
+  z-index: 2;
+  width: min(100%, 1460px);
+  text-align: center;
+}
+
+.contact-section__content h2 {
+  margin: 0;
+  color: #181515;
+  font-size: clamp(64px, 6.1vw, 116px);
+  font-weight: 900;
+  line-height: 0.92;
+  letter-spacing: -0.045em;
+}
+
+.contact-section__card {
+  width: min(100%, 1280px);
+  margin: clamp(42px, 4vw, 72px) auto 0;
+  padding: clamp(30px, 2.6vw, 46px) clamp(30px, 4vw, 70px);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  border-radius: clamp(28px, 2.4vw, 46px);
+  background: rgba(255, 255, 255, 0.62);
+  box-shadow: 0 20px 60px rgba(82, 63, 45, 0.05);
+  -webkit-backdrop-filter: blur(9px);
+  backdrop-filter: blur(9px);
+}
+
+.contact-section .contact-section__message {
+  margin: 0;
+  color: #292524;
+  font-size: clamp(16px, 1.15vw, 22px);
+  line-height: 1.65;
+  word-break: keep-all;
+}
+
+.contact-section .contact-section__name {
+  margin: clamp(22px, 2vw, 34px) 0 0;
+  color: #292524;
+  font-size: clamp(16px, 1.1vw, 21px);
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+.contact-section__links {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 12px 28px;
+  margin-top: 14px;
+}
+
+.contact-section__links a {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: #292524;
+  font-size: clamp(14px, 0.95vw, 18px);
+  line-height: 1.3;
+  transition: color 200ms ease;
+}
+
+.contact-section__links a:hover,
+.contact-section__links a:focus-visible {
+  color: #8b7968;
+}
+
+.contact-section__links svg,
+.contact-section__resume svg {
+  width: 1.25em;
+  height: 1.25em;
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 1.7;
+}
+
+.contact-section__resume {
+  display: inline-flex;
+  min-width: 154px;
+  min-height: 54px;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-top: clamp(30px, 3vw, 48px);
+  padding: 13px 25px;
+  border: 1px solid rgba(41, 37, 36, 0.08);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.84);
+  color: #181515;
+  font-size: 17px;
+  font-weight: 700;
+  line-height: 1;
+  transition: color 220ms ease, background-color 220ms ease, transform 220ms ease;
+}
+
+.contact-section__resume:hover,
+.contact-section__resume:focus-visible {
+  background: #292524;
+  color: #fff;
+  transform: translateY(-2px);
+}
+
+@keyframes contactSphereFloat {
+  0%,
+  100% {
+    transform: translate3d(-50%, calc(-50% + 10px), 0) rotate(-0.4deg);
+  }
+
+  50% {
+    transform: translate3d(-50%, calc(-50% - 18px), 0) rotate(0.4deg);
+  }
+}
+
 /* Intermediate desktop: prevent wide desktop values colliding near 1440px. */
 @media (min-width: 1025px) and (max-width: 1440px) {
   :root {
@@ -225,6 +443,11 @@
 
 /* Tablet */
 @media (max-width: 1024px) {
+  #web-projects.section-transition,
+  #contact.section-transition {
+    height: 158svh;
+  }
+
   .attitude-layout {
     grid-template-columns: minmax(220px, 0.72fr) minmax(0, 1.28fr);
     column-gap: clamp(40px, 6vw, 72px);
@@ -274,10 +497,31 @@
   .banner-slide__copy {
     padding-block: clamp(20px, 2.6vw, 28px);
   }
+
+  .contact-section.portfolio-section {
+    padding-top: 110px;
+  }
+
+  .contact-section__content h2 {
+    font-size: clamp(56px, 8.2vw, 84px);
+  }
+
+  .contact-section__card {
+    width: min(100%, 820px);
+  }
+
+  .contact-section__sphere {
+    width: clamp(280px, 40vw, 420px);
+  }
 }
 
 /* Mobile */
 @media (max-width: 768px) {
+
+  #web-projects.section-transition,
+  #contact.section-transition {
+    height: 150svh;
+  }
 
   /* DESIGN ATTITUDE becomes a readable document flow on narrow screens. */
   .attitude-layout {
@@ -404,6 +648,58 @@
     margin-top: 0.9rem;
     transform: none;
   }
+
+  .contact-section.portfolio-section {
+    min-height: 100svh;
+    padding: 96px var(--page-padding-mobile) 48px;
+  }
+
+  .contact-section__content h2 {
+    font-size: clamp(42px, 11.5vw, 66px);
+    line-height: 0.94;
+  }
+
+  .contact-section__card {
+    margin-top: 34px;
+    padding: 28px 22px;
+    border-radius: 26px;
+  }
+
+  .contact-section .contact-section__message {
+    font-size: 14px;
+    line-height: 1.7;
+  }
+
+  .contact-section__message br {
+    display: none;
+  }
+
+  .contact-section .contact-section__name {
+    margin-top: 22px;
+    font-size: 14px;
+  }
+
+  .contact-section__links {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .contact-section__links a {
+    font-size: 13px;
+  }
+
+  .contact-section__resume {
+    min-width: 138px;
+    min-height: 48px;
+    margin-top: 30px;
+    font-size: 15px;
+  }
+
+  .contact-section__sphere {
+    top: 48%;
+    width: clamp(240px, 62vw, 360px);
+    opacity: 0.6;
+  }
 }
 
 @media (max-width: 560px) {
@@ -446,9 +742,43 @@
   .banner-slide__copy {
     padding: 1.2rem 1.25rem;
   }
+
+  .contact-section.portfolio-section {
+    padding-right: var(--page-padding-compact);
+    padding-left: var(--page-padding-compact);
+  }
+
+  .contact-section__content h2 {
+    font-size: clamp(36px, 11vw, 48px);
+  }
+
+  .contact-section__card {
+    margin-top: 28px;
+    padding: 24px 18px;
+    border-radius: 22px;
+  }
+
+  .contact-section .contact-section__message {
+    font-size: 12px;
+  }
+
+  .contact-section .contact-section__name,
+  .contact-section__links a {
+    font-size: 12px;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
+
+  .contact-section__beam,
+  .contact-section__light,
+  .contact-section__sphere {
+    animation: none !important;
+  }
+
+  .contact-section__resume {
+    transition: none !important;
+  }
 
   .about-section__intro .about-section__title,
   .about-section__intro .about-section__lead,

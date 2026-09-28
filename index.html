@@ -13,13 +13,13 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/variable/pretendardvariable.css">
   <link rel="stylesheet" href="./css/common.css?v=structure-v21">
   <link rel="stylesheet" href="./css/style.css?v=structure-v21">
-  <link rel="stylesheet" href="./css/responsive.css?v=structure-v21">
+  <link rel="stylesheet" href="./css/responsive.css?v=contact-v23">
   <link rel="stylesheet" href="https://unpkg.com/lenis@1.3.26/dist/lenis.css">
   <script src="https://unpkg.com/lenis@1.3.26/dist/lenis.min.js" defer></script>
-  <script src="./js/main.js?v=structure-v21" defer></script>
+  <script src="./js/main.js?v=contact-v23" defer></script>
 </head>
 
-<body data-build="structure-v21">
+<body data-build="contact-v23">
   <header class="site-header">
     <div class="site-header__menu">
       <a class="brand-button" href="#home" aria-label="홈으로 이동">
@@ -59,7 +59,8 @@
     </div>
 
     <p class="site-header__section-title" data-header-section-title aria-live="polite"></p>
-    <a class="site-header__contact" href="#contact" data-nav-section="contact">CONTACT</a>
+    <a class="site-header__contact" href="#contact" data-nav-intro="contact"
+      data-nav-content="contact-content">CONTACT</a>
   </header>
 
   <section class="hero-transition" id="home" data-section="home" aria-label="홈">
@@ -720,20 +721,26 @@
       </div>
     </section>
 
-    <section class="portfolio-section" id="romand" data-section="romand" data-section-title="WEB PROJECTS"
-      aria-labelledby="romand-title">
-      <header class="section-content-heading" data-section-copy>
-        <h2 id="romand-title">ROM&amp;ND</h2>
-        <p>PORTFOLIO SECTION</p>
-      </header>
+    <section class="portfolio-section web-project-section" id="romand" data-section="romand"
+      data-section-title="WEB PROJECTS" aria-labelledby="romand-title">
+      <h2 class="sr-only" id="romand-title">ROM&amp;ND 웹사이트 리디자인 프로젝트</h2>
+      <picture class="web-project-section__picture">
+        <source media="(max-width: 768px)" srcset="./img/romand-project-mobile.jpg" width="168" height="2048">
+        <img class="web-project-section__image" src="./img/romand-project-desktop.jpg"
+          alt="ROM&amp;ND 웹사이트 리디자인의 기획, 디자인 시스템, 반응형 웹 디자인 과정을 정리한 프로젝트 소개"
+          width="455" height="2048" loading="lazy" decoding="async">
+      </picture>
     </section>
 
-    <section class="portfolio-section" id="orum" data-section="orum" data-section-title="WEB PROJECTS"
-      aria-labelledby="orum-title">
-      <header class="section-content-heading" data-section-copy>
-        <h2 id="orum-title">O’RUM</h2>
-        <p>PORTFOLIO SECTION</p>
-      </header>
+    <section class="portfolio-section web-project-section" id="orum" data-section="orum"
+      data-section-title="WEB PROJECTS" aria-labelledby="orum-title">
+      <h2 class="sr-only" id="orum-title">O’RUM 신규 브랜드 웹사이트 프로젝트</h2>
+      <picture class="web-project-section__picture">
+        <source media="(max-width: 768px)" srcset="./img/orum-project-mobile.jpg" width="164" height="2048">
+        <img class="web-project-section__image" src="./img/orum-project-desktop.jpg"
+          alt="O’RUM 가구 브랜드 웹사이트의 기획, 디자인 시스템, 반응형 웹 디자인 과정을 정리한 프로젝트 소개"
+          width="461" height="2048" loading="lazy" decoding="async">
+      </picture>
     </section>
 
     <section class="section-transition" id="contact" data-section-intro data-section-title="CONTACT"
@@ -747,20 +754,50 @@
       </div>
     </section>
 
-    <section class="portfolio-section" id="contact-content" data-section="contact" data-section-title="CONTACT"
-      aria-labelledby="contact-title">
-      <header class="section-content-heading" data-section-copy>
-        <h2 id="contact-title">CONTACT</h2>
-        <p>PROFILE SECTION</p>
-      </header>
-    </section>
+    <section class="portfolio-section contact-section" id="contact-content" data-section="contact"
+      data-section-title="CONTACT" aria-labelledby="contact-title">
+      <div class="contact-section__background" aria-hidden="true">
+        <div class="contact-section__beam"></div>
+        <img class="contact-section__light" src="./img/refraction-light.webp" alt="">
+        <img class="contact-section__sphere" src="./img/glass-sphere.webp" alt="">
+      </div>
 
-    <section class="portfolio-section" id="resume" data-section="resume" data-section-title="CONTACT"
-      aria-labelledby="resume-title">
-      <header class="section-content-heading" data-section-copy>
-        <h2 id="resume-title">RESUME</h2>
-        <p>PROFILE SECTION</p>
-      </header>
+      <div class="contact-section__content">
+        <h2 id="contact-title">DESIGNED TO ADAPT,<br>BUILT TO GROW.</h2>
+
+        <div class="contact-section__card">
+          <p class="contact-section__message">
+            탄탄한 기본기를 바탕으로 트렌드를 읽고, 브랜드의 색에 맞춰 유연하게 변화하겠습니다.<br>
+            디자인과 퍼블리싱을 연결하는 역량과 작은 디테일까지 놓치지 않는 태도로<br>
+            함께 더 나은 경험을 만들어가겠습니다.
+          </p>
+          <p class="contact-section__name">WEB DESIGNER 유채린</p>
+          <div class="contact-section__links" aria-label="연락처">
+            <a href="tel:01093515127">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M7.3 3.6 9.7 7a1.4 1.4 0 0 1-.2 1.8l-1.4 1.3a14.4 14.4 0 0 0 5.8 5.8l1.3-1.4a1.4 1.4 0 0 1 1.8-.2l3.4 2.4a1.4 1.4 0 0 1 .5 1.7l-.7 1.8a2.5 2.5 0 0 1-2.5 1.6C9.2 21.1 2.9 14.8 2.2 6.3a2.5 2.5 0 0 1 1.6-2.5l1.8-.7a1.4 1.4 0 0 1 1.7.5Z"></path>
+              </svg>
+              <span>010-9351-5127</span>
+            </a>
+            <a href="mailto:yooj1127@naver.com">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <rect x="2.5" y="5" width="19" height="14" rx="2"></rect>
+                <path d="m4 7 8 6 8-6"></path>
+              </svg>
+              <span>yooj1127@naver.com</span>
+            </a>
+          </div>
+        </div>
+
+        <a class="contact-section__resume" href="./assets/resume-ycr.pdf" target="_blank"
+          rel="noopener noreferrer" aria-label="유채린 이력서 PDF 새 탭에서 열기">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M6 2.5h8l4 4v15H6z"></path>
+            <path d="M14 2.5v4h4M9 12h6M9 15.5h6M9 8.5h2"></path>
+          </svg>
+          <span>RESUME</span>
+        </a>
+      </div>
     </section>
   </main>
 </body>
