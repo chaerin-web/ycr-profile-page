@@ -11,13 +11,15 @@
   <link rel="preconnect" href="https://cdn.jsdelivr.net">
   <link rel="preconnect" href="https://fastly.jsdelivr.net" crossorigin>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/variable/pretendardvariable.css">
-  <link rel="stylesheet" href="./css/style.css?v=responsive-flow-v20">
+  <link rel="stylesheet" href="./css/common.css?v=structure-v21">
+  <link rel="stylesheet" href="./css/style.css?v=structure-v21">
+  <link rel="stylesheet" href="./css/responsive.css?v=web-buttons-v25">
   <link rel="stylesheet" href="https://unpkg.com/lenis@1.3.26/dist/lenis.css">
   <script src="https://unpkg.com/lenis@1.3.26/dist/lenis.min.js" defer></script>
-  <script src="./js/main.js?v=responsive-flow-v19" defer></script>
+  <script src="./js/main.js?v=web-buttons-v25" defer></script>
 </head>
 
-<body data-build="responsive-flow-v19">
+<body data-build="web-buttons-v25">
   <header class="site-header">
     <div class="site-header__menu">
       <a class="brand-button" href="#home" aria-label="홈으로 이동">
@@ -57,7 +59,8 @@
     </div>
 
     <p class="site-header__section-title" data-header-section-title aria-live="polite"></p>
-    <a class="site-header__contact" href="#contact" data-nav-section="contact">CONTACT</a>
+    <a class="site-header__contact" href="#contact" data-nav-intro="contact"
+      data-nav-content="contact-content">CONTACT</a>
   </header>
 
   <section class="hero-transition" id="home" data-section="home" aria-label="홈">
@@ -208,8 +211,7 @@
           </div>
 
           <div class="skills-section" data-about-phase="skills" aria-label="사용 가능한 디자인 및 웹 제작 도구">
-            <div class="skills-groups">
-            <section class="skills-group" data-skills-group="0" aria-label="디자인 도구">
+            <div class="skills-grid" data-skills-grid>
               <article class="skill-card">
                 <header class="skill-card__header">
                   <img class="skill-card__icon" src="./img/icon-illustrator.svg" alt="" aria-hidden="true">
@@ -254,9 +256,7 @@
                   <li>협업용 화면·스타일 정리</li>
                 </ul>
               </article>
-            </section>
 
-            <section class="skills-group" data-skills-group="1" aria-label="웹 퍼블리싱 도구">
               <article class="skill-card">
                 <header class="skill-card__header">
                   <img class="skill-card__icon" src="./img/icon-html.svg" alt="" aria-hidden="true">
@@ -305,9 +305,7 @@
                   <li>Slider Library 활용</li>
                 </ul>
               </article>
-            </section>
 
-            <section class="skills-group" data-skills-group="2" aria-label="협업 및 관리 도구">
               <article class="skill-card">
                 <header class="skill-card__header">
                   <img class="skill-card__icon" src="./img/icon-git.svg" alt="" aria-hidden="true">
@@ -352,11 +350,9 @@
                   <li>협업 목적의 내용 공유</li>
                 </ul>
               </article>
-            </section>
+            </div>
           </div>
         </div>
-      </div>
-
       </div>
     </section>
 
@@ -673,7 +669,7 @@
           <figure class="detail-card__media">
             <img src="./img/haagendazs-cover.jpg" alt="하겐다즈 딸기 아이스크림 상세페이지 표지">
             <figcaption class="detail-card__overlay">
-              <a class="detail-card__cta" href="./detail-haagendazs.html" target="_blank" rel="noopener"
+              <a class="detail-card__cta" href="./pages/detail-haagendazs.html" target="_blank" rel="noopener"
                 aria-label="Häagen-Dazs 상세페이지 새 창에서 보기">자세히 보기</a>
             </figcaption>
           </figure>
@@ -687,7 +683,7 @@
           <figure class="detail-card__media">
             <img src="./img/veilune-cover.jpg" alt="베일룬 세럼 상세페이지 표지">
             <figcaption class="detail-card__overlay">
-              <a class="detail-card__cta" href="./detail-veilune.html" target="_blank" rel="noopener"
+              <a class="detail-card__cta" href="./pages/detail-veilune.html" target="_blank" rel="noopener"
                 aria-label="VEILUNE 상세페이지 새 창에서 보기">자세히 보기</a>
             </figcaption>
           </figure>
@@ -701,7 +697,7 @@
           <figure class="detail-card__media">
             <img src="./img/sony-cover.jpg" alt="소니 헤드폰 상세페이지 표지">
             <figcaption class="detail-card__overlay">
-              <a class="detail-card__cta" href="./detail-sony.html" target="_blank" rel="noopener"
+              <a class="detail-card__cta" href="./pages/detail-sony.html" target="_blank" rel="noopener"
                 aria-label="SONY 상세페이지 새 창에서 보기">자세히 보기</a>
             </figcaption>
           </figure>
@@ -725,20 +721,47 @@
       </div>
     </section>
 
-    <section class="portfolio-section" id="romand" data-section="romand" data-section-title="WEB PROJECTS"
-      aria-labelledby="romand-title">
-      <header class="section-content-heading" data-section-copy>
-        <h2 id="romand-title">ROM&amp;ND</h2>
-        <p>PORTFOLIO SECTION</p>
-      </header>
+    <section class="portfolio-section web-project-section" id="romand" data-section="romand"
+      data-section-title="WEB PROJECTS" aria-labelledby="romand-title">
+      <h2 class="sr-only" id="romand-title">ROM&amp;ND 웹사이트 리디자인 프로젝트</h2>
+      <picture class="web-project-section__picture">
+        <source media="(max-width: 768px)" srcset="./img/romand-project-mobile.jpg" width="168" height="2048">
+        <img class="web-project-section__image" src="./img/romand-project-desktop.jpg"
+          alt="ROM&amp;ND 웹사이트 리디자인의 기획, 디자인 시스템, 반응형 웹 디자인 과정을 정리한 프로젝트 소개"
+          width="455" height="2048" loading="lazy" decoding="async">
+      </picture>
+      <div class="web-project-section__button-layer web-project-section__button-layer--romand">
+        <span class="web-project-section__button-mask" aria-hidden="true"></span>
+        <nav class="web-project-section__links" aria-label="ROM&amp;ND 프로젝트 링크">
+          <button class="web-project-section__link web-project-section__link--original" type="button"
+            data-project-link-pending="ROM&amp;ND ORIGINAL">ORIGINAL</button>
+          <a class="web-project-section__link web-project-section__link--redesign"
+            href="https://0hyeona.github.io/romand/index.html" target="_blank" rel="noopener noreferrer"
+            aria-label="ROM&amp;ND REDESIGN 새 탭에서 열기">REDESIGN</a>
+          <button class="web-project-section__link web-project-section__link--figma" type="button"
+            data-project-link-pending="ROM&amp;ND FIGMA">FIGMA</button>
+        </nav>
+      </div>
     </section>
 
-    <section class="portfolio-section" id="orum" data-section="orum" data-section-title="WEB PROJECTS"
-      aria-labelledby="orum-title">
-      <header class="section-content-heading" data-section-copy>
-        <h2 id="orum-title">O’RUM</h2>
-        <p>PORTFOLIO SECTION</p>
-      </header>
+    <section class="portfolio-section web-project-section" id="orum" data-section="orum"
+      data-section-title="WEB PROJECTS" aria-labelledby="orum-title">
+      <h2 class="sr-only" id="orum-title">O’RUM 신규 브랜드 웹사이트 프로젝트</h2>
+      <picture class="web-project-section__picture">
+        <source media="(max-width: 768px)" srcset="./img/orum-project-mobile.jpg" width="164" height="2048">
+        <img class="web-project-section__image" src="./img/orum-project-desktop.jpg"
+          alt="O’RUM 가구 브랜드 웹사이트의 기획, 디자인 시스템, 반응형 웹 디자인 과정을 정리한 프로젝트 소개"
+          width="461" height="2048" loading="lazy" decoding="async">
+      </picture>
+      <div class="web-project-section__button-layer web-project-section__button-layer--orum">
+        <span class="web-project-section__button-mask" aria-hidden="true"></span>
+        <nav class="web-project-section__links" aria-label="O’RUM 프로젝트 링크">
+          <button class="web-project-section__link web-project-section__link--branding" type="button"
+            data-project-link-pending="O’RUM NEW BRANDING WEB">NEW BRANDING WEB</button>
+          <button class="web-project-section__link web-project-section__link--figma" type="button"
+            data-project-link-pending="O’RUM FIGMA">FIGMA</button>
+        </nav>
+      </div>
     </section>
 
     <section class="section-transition" id="contact" data-section-intro data-section-title="CONTACT"
@@ -752,20 +775,50 @@
       </div>
     </section>
 
-    <section class="portfolio-section" id="contact-content" data-section="contact" data-section-title="CONTACT"
-      aria-labelledby="contact-title">
-      <header class="section-content-heading" data-section-copy>
-        <h2 id="contact-title">CONTACT</h2>
-        <p>PROFILE SECTION</p>
-      </header>
-    </section>
+    <section class="portfolio-section contact-section" id="contact-content" data-section="contact"
+      data-section-title="CONTACT" aria-labelledby="contact-title">
+      <div class="contact-section__background" aria-hidden="true">
+        <div class="contact-section__beam"></div>
+        <img class="contact-section__light" src="./img/refraction-light.webp" alt="">
+        <img class="contact-section__sphere" src="./img/glass-sphere.webp" alt="">
+      </div>
 
-    <section class="portfolio-section" id="resume" data-section="resume" data-section-title="CONTACT"
-      aria-labelledby="resume-title">
-      <header class="section-content-heading" data-section-copy>
-        <h2 id="resume-title">RESUME</h2>
-        <p>PROFILE SECTION</p>
-      </header>
+      <div class="contact-section__content">
+        <h2 id="contact-title">DESIGNED TO ADAPT,<br>BUILT TO GROW.</h2>
+
+        <div class="contact-section__card">
+          <p class="contact-section__message">
+            탄탄한 기본기를 바탕으로 트렌드를 읽고, 브랜드의 색에 맞춰 유연하게 변화하겠습니다.<br>
+            디자인과 퍼블리싱을 연결하는 역량과 작은 디테일까지 놓치지 않는 태도로<br>
+            함께 더 나은 경험을 만들어가겠습니다.
+          </p>
+          <p class="contact-section__name">WEB DESIGNER 유채린</p>
+          <div class="contact-section__links" aria-label="연락처">
+            <a href="tel:01093515127">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M7.3 3.6 9.7 7a1.4 1.4 0 0 1-.2 1.8l-1.4 1.3a14.4 14.4 0 0 0 5.8 5.8l1.3-1.4a1.4 1.4 0 0 1 1.8-.2l3.4 2.4a1.4 1.4 0 0 1 .5 1.7l-.7 1.8a2.5 2.5 0 0 1-2.5 1.6C9.2 21.1 2.9 14.8 2.2 6.3a2.5 2.5 0 0 1 1.6-2.5l1.8-.7a1.4 1.4 0 0 1 1.7.5Z"></path>
+              </svg>
+              <span>010-9351-5127</span>
+            </a>
+            <a href="mailto:yooj1127@naver.com">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <rect x="2.5" y="5" width="19" height="14" rx="2"></rect>
+                <path d="m4 7 8 6 8-6"></path>
+              </svg>
+              <span>yooj1127@naver.com</span>
+            </a>
+          </div>
+        </div>
+
+        <a class="contact-section__resume" href="./assets/resume-ycr.pdf" target="_blank"
+          rel="noopener noreferrer" aria-label="유채린 이력서 PDF 새 탭에서 열기">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M6 2.5h8l4 4v15H6z"></path>
+            <path d="M14 2.5v4h4M9 12h6M9 15.5h6M9 8.5h2"></path>
+          </svg>
+          <span>RESUME</span>
+        </a>
+      </div>
     </section>
   </main>
 </body>
