@@ -58,6 +58,36 @@
 
 .attitude-layout .about-section__left--attitude {
   align-self: start;
+  container-type: inline-size;
+}
+
+/* Size the long heading against its own column, not the whole viewport. */
+.about-section .about-section__title--attitude {
+  font-size: clamp(36px, 18cqi, 100px);
+}
+
+.attitude-card h3,
+.attitude-card__label,
+.skill-card h3,
+.skill-card li,
+.poster-work__copy,
+.banner-slide__copy,
+.detail-card__caption,
+.contact-section__links a {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.skill-card__list--columns {
+  columns: 10rem auto;
+}
+
+.attitude-profile figcaption {
+  flex-wrap: wrap;
+}
+
+.about-section__left--attitude.is-too-tall {
+  position: static;
 }
 
 .attitude-layout .attitude-grid {
@@ -144,7 +174,73 @@
 .banner-slide__visual img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
+}
+
+/* The tallest copy sets the shared slide height; no clipping or inner scroll. */
+.banner-slider {
+  height: auto;
+  min-height: 0;
+  max-height: none;
+  aspect-ratio: auto;
+  padding-bottom: 0;
+}
+
+.banner-slider__viewport,
+.banner-slider__track,
+.banner-slide {
+  height: auto;
+  min-height: 0;
+}
+
+.banner-slider__track {
+  align-items: stretch;
+}
+
+.banner-slide__visual {
+  aspect-ratio: 1920 / 970;
+}
+
+.banner-slide__copy {
+  height: auto;
+  overflow: visible;
+}
+
+.banner-slider__pagination {
+  position: relative;
+  inset: auto;
+  justify-content: center;
+  margin-top: 20px;
+  transform: none;
+}
+
+.poster-section.portfolio-section {
+  height: auto;
+  overflow-x: clip;
+}
+
+.poster-section__rail {
+  container-type: inline-size;
+}
+
+.poster-section .poster-section__heading h2 {
+  font-size: clamp(40px, 21cqi, 100px);
+}
+
+.poster-work {
+  height: auto;
+  grid-template-columns: minmax(0, 430px) minmax(0, 380px);
+}
+
+.poster-work__image {
+  width: min(100%, 430px, max(220px, calc((100svh - 168px) * 2 / 3)));
+}
+
+.menu-panel {
+  max-height: calc(100dvh - 48px);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  scrollbar-width: none;
 }
 
 /* Web Projects: each project is supplied as one responsive presentation image. */
@@ -538,7 +634,7 @@
   }
 
   .poster-work {
-    grid-template-columns: minmax(260px, 390px) minmax(230px, 340px);
+    grid-template-columns: minmax(0, 390px) minmax(0, 340px);
     gap: clamp(34px, 3.5vw, 50px);
   }
 
@@ -563,6 +659,17 @@
   }
 }
 
+@media (max-width: 1440px) {
+  .skill-card ul {
+    padding-right: 0;
+  }
+
+  .attitude-card br,
+  .poster-work__copy br {
+    display: none;
+  }
+}
+
 /* Tablet */
 @media (max-width: 1024px) {
   #web-projects.section-transition {
@@ -577,6 +684,18 @@
   .attitude-layout .about-section__left--attitude {
     position: sticky;
     top: clamp(88px, 11vh, 124px);
+  }
+
+  .about-section .about-section__title--attitude {
+    font-size: clamp(36px, 18cqi, 72px);
+  }
+
+  .attitude-layout .about-section__left--attitude.is-too-tall {
+    position: static;
+  }
+
+  .poster-section .poster-section__heading h2 {
+    font-size: 72px;
   }
 
   .attitude-layout .attitude-grid {
@@ -688,6 +807,11 @@
     width: 100%;
   }
 
+  .about-section .about-section__title--attitude,
+  .poster-section .poster-section__heading h2 {
+    font-size: 56px;
+  }
+
   .attitude-profile {
     width: min(100%, 230px);
     margin-top: 32px;
@@ -715,6 +839,14 @@
 
   .skill-card {
     min-width: 0;
+  }
+
+  .skill-card ul {
+    margin-top: 18px;
+  }
+
+  .skill-card__list--columns {
+    columns: 1;
   }
 
   .skill-card__header {
@@ -786,7 +918,7 @@
     grid-row: 2;
     height: auto;
     min-height: 0;
-    padding: 1.35rem 1.5rem;
+    padding: 2rem 1.5rem;
   }
 
   .banner-slide__copy h3 {
@@ -857,6 +989,25 @@
 }
 
 @media (max-width: 560px) {
+  .skill-card {
+    display: block;
+  }
+
+  .skill-card ul {
+    margin-top: 16px;
+  }
+  .about-section .about-section__title--attitude,
+  .poster-section .poster-section__heading h2 {
+    font-size: clamp(36px, 11vw, 42px);
+  }
+
+  .poster-work {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .poster-work__image {
+    width: min(82vw, 300px);
+  }
   .attitude-profile {
     width: min(72vw, 240px);
   }
@@ -894,7 +1045,7 @@
   }
 
   .banner-slide__copy {
-    padding: 1.2rem 1.25rem;
+    padding: 2rem 1.5rem;
   }
 
   .contact-section.portfolio-section {
@@ -919,6 +1070,38 @@
   .contact-section .contact-section__name,
   .contact-section__links a {
     font-size: 12px;
+  }
+}
+
+/* Short landscape screens still allow the complete modal to be read. */
+@media (max-height: 600px) {
+  .hero,
+  .section-transition__sticky {
+    min-height: 0;
+  }
+
+  .popup-modal {
+    max-height: calc(100dvh - 24px);
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    scrollbar-width: none;
+  }
+
+  .popup-modal__inner {
+    max-height: none;
+    overflow: visible;
+  }
+}
+
+@media (min-width: 1025px) and (max-height: 720px) {
+  .poster-section__rail {
+    position: relative;
+    height: auto;
+    min-height: 0;
+  }
+
+  .poster-nav {
+    margin-top: 3rem;
   }
 }
 

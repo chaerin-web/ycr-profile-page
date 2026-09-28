@@ -195,6 +195,22 @@
     aboutRevealItems.forEach((item) => observer.observe(item));
   };
 
+  // A tall left column must remain reachable on short/landscape viewports.
+  const attitudeLeft = document.querySelector(".about-section__left--attitude");
+  const updateAttitudeSticky = () => {
+    if (!attitudeLeft) return;
+    const top = window.innerWidth <= 1024
+      ? Math.min(124, Math.max(88, window.innerHeight * 0.11))
+      : Math.min(112, Math.max(76, window.innerHeight * 0.08));
+    attitudeLeft.classList.toggle("is-too-tall",
+      window.innerWidth > 768 && attitudeLeft.offsetHeight + top + 24 > window.innerHeight);
+  };
+  if (attitudeLeft && "ResizeObserver" in window) {
+    new ResizeObserver(updateAttitudeSticky).observe(attitudeLeft);
+  }
+  window.addEventListener("resize", updateAttitudeSticky, { passive: true });
+  document.fonts?.ready.then(updateAttitudeSticky);
+
   /* Section transitions, header title and scroll-linked copy */
   const getSectionTransitionProgress = (section) => {
     if (!section) return 0;

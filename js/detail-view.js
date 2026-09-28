@@ -36,7 +36,7 @@
     window.close();
 
     window.setTimeout(() => {
-      if (!window.closed) window.location.href = "./index.html#detail-page";
+      if (!window.closed) window.location.href = closeButton?.getAttribute("href") || "../index.html#detail-page";
     }, 120);
   };
 

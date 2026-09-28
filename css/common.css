@@ -1,4 +1,5 @@
 @charset "UTF-8";
+@import url("./fonts.css");
 
 /* Shared design values from the existing site */
 :root {
