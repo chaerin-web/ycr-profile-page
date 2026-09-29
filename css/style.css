@@ -937,12 +937,14 @@
   gap: 10px;
 }
 
+.skill-card-wrap{
+  width: 68px;
+  height: 68px;
+}
 .skill-card__icon {
   display: block;
-  width: 26px;
-  height: 26px;
-  flex: 0 0 26px;
-  object-fit: contain;
+  height: 100%;
+  object-fit: cover;
 }
 
 .skill-card h3,

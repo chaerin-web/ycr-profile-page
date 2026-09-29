@@ -136,7 +136,7 @@
   align-items: start;
 }
 
-.skill-card__icon {
+.skill-card-wrap {
   grid-column: 1;
   grid-row: 1 / span 2;
 }
@@ -281,7 +281,7 @@
 .web-project-section.portfolio-section > .web-project-section__button-layer {
   --project-ink: #b01818;
   --button-y: 68.75vw;
-  --button-height: 2.3vw;
+  --button-height: 2vw;
   --button-gap: 1.75vw;
   --button-row-width: 30.2vw;
   position: absolute;
@@ -337,7 +337,7 @@
   color: var(--project-ink);
   cursor: pointer;
   font-family: var(--font-family-base);
-  font-size: clamp(8px, 0.98vw, 19px);
+  font-size: 0.9rem;
   font-weight: 700;
   line-height: 1;
   white-space: nowrap;
