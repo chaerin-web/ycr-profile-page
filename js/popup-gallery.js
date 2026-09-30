@@ -58,13 +58,13 @@
     {
       title: "NETFLIX THRILLER",
       image: "./img/popup-netflix_thriller.png",
-      alt: "넷플릭스 스릴러 콘텐츠 프로모션 팝업 디자인",
+      alt: "넷플릭스 스릴러 콘텐츠 팝업 디자인",
       description: "짙은 네이비와 블랙 컬러, 거친 질감의 합성 효과를 활용해\n어둡고 긴장감 있는 분위기를 연출했으며, 레드 컬러를 포인트로 사용해\n스릴러 장르의 위기감과 강렬함을 전달했습니다."
     },
     {
       title: "NETFLIX ROMANCE",
       image: "./img/popup-netflix_romance.png",
-      alt: "넷플릭스 로맨스 콘텐츠 프로모션 팝업 디자인",
+      alt: "넷플릭스 로맨스 콘텐츠 팝업 디자인",
       description: "따뜻한 골든 톤과 여러 장면을 겹친 콜라주 구성으로\n추억과 시간의 흐름을 표현했으며, 손글씨 서체를 활용해\n로맨스 장르의 감성적이고 아련한 분위기를 전달했습니다."
     },
     {
