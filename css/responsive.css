@@ -280,7 +280,7 @@
 /* Keep the clickable links aligned with the buttons printed into each responsive artwork. */
 .web-project-section.portfolio-section > .web-project-section__button-layer {
   --project-ink: #b01818;
-  --button-y: 68.75vw;
+  --button-y: 26.7vw;
   --button-height: 2vw;
   --button-gap: 1.75vw;
   --button-row-width: 30.2vw;
@@ -295,7 +295,7 @@
 
 .web-project-section.portfolio-section > .web-project-section__button-layer--orum {
   --project-ink: #53644d;
-  --button-y: 66.67vw;
+  --button-y: 27.8vw;
   --button-row-width: 24.5vw;
 }
 
@@ -364,6 +364,24 @@
 .web-project-section__button-layer--romand .web-project-section__link--figma { width: 7.85vw; }
 .web-project-section__link--branding { width: 15vw; }
 .web-project-section__button-layer--orum .web-project-section__link--figma { width: 7.75vw; }
+
+/* Keep the full link labels inside their pills just above the mobile artwork swap. */
+@media (min-width: 769px) and (max-width: 900px) {
+  .web-project-section.portfolio-section > .web-project-section__button-layer {
+    --button-height: 20px;
+    --button-gap: 1.5vw;
+    --button-row-width: 31.5vw;
+  }
+
+  .web-project-section.portfolio-section > .web-project-section__button-layer--orum {
+    --button-row-width: 29.7vw;
+  }
+
+  .web-project-section__link--redesign { width: 11vw; }
+  .web-project-section__link--branding { width: 20vw; }
+  .web-project-section__button-layer--romand .web-project-section__link--figma,
+  .web-project-section__button-layer--orum .web-project-section__link--figma { width: 8.2vw; }
+}
 
 .web-project-link-notice {
   position: fixed;
@@ -767,14 +785,14 @@
   }
 
   .web-project-section.portfolio-section > .web-project-section__button-layer {
-    --button-y: 143.75vw;
+    --button-y: 55.5vw;
     --button-height: 4.3vw;
     --button-gap: 3.2vw;
     --button-row-width: 56.3vw;
   }
 
   .web-project-section.portfolio-section > .web-project-section__button-layer--orum {
-    --button-y: 173.05vw;
+    --button-y: 62vw;
     --button-gap: 3.5vw;
     --button-row-width: 45.6vw;
   }
