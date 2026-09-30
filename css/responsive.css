@@ -359,7 +359,7 @@
   color: #fff;
 }
 
-.web-project-section__link--original { width: 9.3vw; }
+.web-project-section__link--before { width: 9.3vw; }
 .web-project-section__link--redesign { width: 9.55vw; }
 .web-project-section__button-layer--romand .web-project-section__link--figma { width: 7.85vw; }
 .web-project-section__link--branding { width: 15vw; }
@@ -790,7 +790,7 @@
     border-width: max(1px, 0.16vw);
   }
 
-  .web-project-section__link--original { width: 17.35vw; }
+  .web-project-section__link--before { width: 17.35vw; }
   .web-project-section__link--redesign { width: 18vw; }
   .web-project-section__button-layer--romand .web-project-section__link--figma { width: 14.55vw; }
   .web-project-section__link--branding { width: 27.6vw; }
@@ -1130,4 +1130,154 @@
     transform: none !important;
     transition: none !important;
   }
+}
+
+/* About background: one viewport anchored object, bounded by ABOUT ME. */
+.about-section__flow {
+  z-index: 1;
+  background: transparent;
+}
+
+.about-section.portfolio-section { overflow: clip; }
+
+.about-section__flow::before,
+.about-section__flow::after {
+  content: none;
+}
+
+.about-section__orb-stage {
+  --orb-size: clamp(320px, 28vw, 460px);
+  --orb-pointer-x: 0px;
+  --orb-pointer-y: 0px;
+  position: sticky;
+  z-index: 0;
+  top: 0;
+  height: 100svh;
+  margin-bottom: -100svh;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.about-section__orb-motion {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: var(--orb-size);
+  aspect-ratio: 1;
+  transform: translate3d(calc(-50% + var(--orb-pointer-x)), calc(-50% + var(--orb-pointer-y)), 0);
+  will-change: transform;
+}
+
+.about-section__orb-float {
+  position: absolute;
+  z-index: 1;
+  inset: 0;
+  border-radius: 50%;
+  background: url("../img/glass-sphere.webp") 49% 46% / 225% auto no-repeat;
+  opacity: 0.4;
+  animation: aboutOrbFloat 8.4s ease-in-out infinite;
+}
+
+.about-section__orb-caustics {
+  position: absolute;
+  z-index: 0;
+  top: 42%;
+  left: 50%;
+  width: 190%;
+  height: 95%;
+  opacity: 0.3;
+  transform: translateX(-50%);
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 17%, #000 83%, transparent);
+  mask-image: linear-gradient(90deg, transparent, #000 17%, #000 83%, transparent);
+}
+
+.about-section__orb-caustics img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  animation: aboutCausticsFlow 10s ease-in-out infinite alternate;
+}
+
+@keyframes aboutOrbFloat {
+  0%, 100% { transform: translate3d(0, 12px, 0) rotate(-0.35deg) scale(0.985); }
+  50% { transform: translate3d(0, -22px, 0) rotate(0.35deg) scale(1.015); }
+}
+
+/* The transition's existing scroll progress also moves the soft gradient. */
+.section-transition__tone {
+  background: linear-gradient(115deg,
+    var(--transition-from) 0% 20%,
+    var(--transition-wipe) 48%,
+    var(--transition-to) 80% 100%);
+  background-size: 500% 100%;
+  background-position: 0% 50%;
+  will-change: opacity, background-position;
+}
+
+.section-transition__wipe span {
+  background: linear-gradient(180deg,
+    var(--transition-wipe),
+    color-mix(in srgb, var(--transition-wipe) 60%, var(--transition-to)) 55%,
+    var(--transition-to));
+}
+
+/* Swiper alone moves the banner image and its copy as one card. */
+.banner-slider__viewport.swiper {
+  overflow: hidden;
+  scroll-behavior: auto;
+  scroll-snap-type: none;
+  touch-action: pan-y;
+}
+
+.banner-slider__track.swiper-wrapper {
+  width: 100%;
+  height: auto;
+  align-items: stretch;
+}
+
+.banner-slide.swiper-slide {
+  width: 100%;
+  height: auto;
+  flex: 0 0 auto;
+  scroll-snap-align: none;
+}
+
+.banner-slider__pagination { display: flex; }
+
+/* Keep the original desktop icon while restoring its balance at smaller widths. */
+.skill-card-wrap { flex: none; }
+.skill-card__icon {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+@media (max-width: 1440px) {
+  .about-section__orb-stage { --orb-size: clamp(270px, 30vw, 400px); }
+  .skill-card-wrap { width: 56px; height: 56px; }
+}
+
+@media (max-width: 1024px) {
+  .about-section__orb-stage { --orb-size: clamp(220px, 34vw, 320px); }
+  .skill-card-wrap { width: 50px; height: 50px; }
+  .skill-card__header { column-gap: 12px; }
+}
+
+@media (max-width: 768px) {
+  .about-section__orb-stage { --orb-size: clamp(185px, 42vw, 280px); }
+  .about-section__orb-float { opacity: 0.2; }
+  .about-section__orb-caustics { width: 175%; opacity: 0.24; }
+  .skill-card-wrap { width: 42px; height: 42px; }
+  .skill-card__header { column-gap: 12px; }
+}
+
+@media (max-width: 480px) {
+  .about-section__orb-stage { --orb-size: clamp(150px, 44vw, 210px); }
+  .skill-card-wrap { width: 38px; height: 38px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .about-section__orb-float,
+  .about-section__orb-caustics img { animation: none; }
 }

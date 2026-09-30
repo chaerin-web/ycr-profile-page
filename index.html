@@ -12,10 +12,12 @@
   <link rel="preconnect" href="https://fastly.jsdelivr.net" crossorigin>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/variable/pretendardvariable.css">
   <link rel="stylesheet" href="./css/common.css?v=responsive-final-v26">
+  <link rel="stylesheet" href="./vendor/swiper/swiper-bundle.min.css">
   <link rel="stylesheet" href="./css/style.css?v=structure-v21">
   <link rel="stylesheet" href="./css/responsive.css?v=responsive-final-v26">
   <link rel="stylesheet" href="https://unpkg.com/lenis@1.3.26/dist/lenis.css">
   <script src="https://unpkg.com/lenis@1.3.26/dist/lenis.min.js" defer></script>
+  <script src="./vendor/swiper/swiper-bundle.min.js" defer></script>
   <script src="./js/main.js?v=responsive-final-v26" defer></script>
 </head>
 
@@ -116,10 +118,15 @@
 
     <section class="portfolio-section about-section" id="about-content" data-section="about-me"
       data-section-title="ABOUT ME" aria-labelledby="about-attitude-title">
-      <div class="about-section__flow">
-        <div class="about-section__caustics" aria-hidden="true">
-          <img src="./img/refraction-light.webp" alt="">
+      <div class="about-section__orb-stage" aria-hidden="true">
+        <div class="about-section__orb-motion">
+          <div class="about-section__orb-float"></div>
+          <div class="about-section__orb-caustics">
+            <img src="./img/refraction-light.webp" alt="">
+          </div>
         </div>
+      </div>
+      <div class="about-section__flow">
 
         <div class="about-section__content about-section__content--attitude" data-about-phase="attitude">
           <div class="attitude-layout" aria-label="프로필과 디자인 태도 네 가지">
@@ -603,9 +610,9 @@
 
       <div class="banner-slider" data-banner-slider tabindex="0" role="region" aria-roledescription="carousel"
         aria-label="배너 디자인 작업물">
-        <div class="banner-slider__viewport">
-          <div class="banner-slider__track" data-banner-track>
-            <article class="banner-slide is-active" data-banner-slide aria-hidden="false">
+        <div class="banner-slider__viewport swiper">
+          <div class="banner-slider__track swiper-wrapper" data-banner-track>
+            <article class="banner-slide swiper-slide is-active" data-banner-slide aria-hidden="false">
               <div class="banner-slide__card">
                 <div class="banner-slide__copy">
                   <p class="banner-slide__number">01</p>
@@ -619,7 +626,7 @@
               </div>
             </article>
 
-            <article class="banner-slide" data-banner-slide aria-hidden="true">
+            <article class="banner-slide swiper-slide" data-banner-slide aria-hidden="true">
               <div class="banner-slide__card">
                 <div class="banner-slide__copy">
                   <p class="banner-slide__number">02</p>
@@ -633,7 +640,7 @@
               </div>
             </article>
 
-            <article class="banner-slide" data-banner-slide aria-hidden="true">
+            <article class="banner-slide swiper-slide" data-banner-slide aria-hidden="true">
               <div class="banner-slide__card">
                 <div class="banner-slide__copy">
                   <p class="banner-slide__number">03</p>
@@ -647,7 +654,7 @@
               </div>
             </article>
 
-            <article class="banner-slide" data-banner-slide aria-hidden="true">
+            <article class="banner-slide swiper-slide" data-banner-slide aria-hidden="true">
               <div class="banner-slide__card">
                 <div class="banner-slide__copy">
                   <p class="banner-slide__number">04</p>

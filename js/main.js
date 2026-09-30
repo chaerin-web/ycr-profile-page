@@ -32,7 +32,6 @@
   const posterNavLinks = [...document.querySelectorAll("[data-poster-nav]")];
   const bannerSlider = document.querySelector("[data-banner-slider]");
   const bannerViewport = bannerSlider?.querySelector(".banner-slider__viewport");
-  const bannerTrack = bannerSlider?.querySelector("[data-banner-track]");
   const bannerSlides = [...(bannerSlider?.querySelectorAll("[data-banner-slide]") || [])];
   const bannerDots = [...(bannerSlider?.querySelectorAll("[data-banner-dot]") || [])];
   const bannerStatus = bannerSlider?.querySelector("[data-banner-status]");
@@ -76,22 +75,6 @@
   let popupIsOutside = true;
   let popupSuppressClickUntil = 0;
   let guidedHeroScrollId = 0;
-  let activeBannerIndex = 0;
-  let bannerScrollFrame = false;
-  let bannerIsDragging = false;
-  let bannerDragMoved = false;
-  let bannerPointerId = null;
-  let bannerDragStartX = 0;
-  let bannerDragStartScrollLeft = 0;
-  let bannerAllSlides = [];
-  let bannerPhysicalIndex = 1;
-  let bannerAutoplayTimer = 0;
-  let bannerScrollEndTimer = 0;
-  let bannerPointerInside = false;
-  let bannerHasFocus = false;
-  let bannerIsTransitioning = false;
-  let bannerQueuedIndex = null;
-  let bannerResetFrame = 0;
   let popupScrollLockY = 0;
 
   const bannerNames = ["GENTLE MONSTER", "AESOP", "NULDAM", "YOUTUBE MUSIC"];
@@ -228,6 +211,7 @@
         title.style.opacity = "1";
         title.style.transform = "translate3d(-50%, -50%, 0)";
         tone.style.opacity = "1";
+        tone.style.backgroundPosition = "100% 50%";
         wipeSteps.forEach((step) => {
           step.style.transform = "translate3d(0, -101%, 0)";
         });
@@ -247,6 +231,7 @@
       const titleOffset = 26 * (1 - titleEnter) - 22 * titleExit;
 
       tone.style.opacity = toneProgress.toFixed(3);
+      tone.style.backgroundPosition = `${(toneProgress * 100).toFixed(1)}% 50%`;
       title.style.opacity = (titleEnter * (1 - titleExit)).toFixed(3);
       title.style.transform = `translate3d(-50%, calc(-50% + ${titleOffset.toFixed(2)}px), 0)`;
 
@@ -690,311 +675,127 @@
     });
   };
 
-  /* Seamless banner slider */
-  const getNormalizedBannerIndex = (index) => {
-    if (!bannerSlides.length) return 0;
-    return ((index % bannerSlides.length) + bannerSlides.length) % bannerSlides.length;
-  };
-
-  const getBannerLogicalIndex = (physicalIndex) => {
-    if (physicalIndex <= 0) return bannerSlides.length - 1;
-    if (physicalIndex >= bannerSlides.length + 1) return 0;
-    return physicalIndex - 1;
-  };
-
-  const setActiveBannerSlide = (nextIndex) => {
-    if (!bannerSlides.length) return;
-
-    activeBannerIndex = getNormalizedBannerIndex(nextIndex);
-    const slidesToUpdate = bannerAllSlides.length ? bannerAllSlides : bannerSlides;
-
-    slidesToUpdate.forEach((slide) => {
-      const logicalIndex = Number(slide.dataset.bannerLogical);
-      const isActive = logicalIndex === activeBannerIndex;
-      slide.classList.toggle("is-active", isActive);
-      slide.setAttribute("aria-hidden", String(slide.dataset.bannerClone === "true" || !isActive));
-    });
-
-    bannerDots.forEach((dot, index) => {
-      const isActive = index === activeBannerIndex;
-      dot.classList.toggle("is-active", isActive);
-      if (isActive) {
-        dot.setAttribute("aria-current", "true");
-      } else {
-        dot.removeAttribute("aria-current");
-      }
-    });
-
-    if (bannerStatus) {
-      bannerStatus.textContent = `${activeBannerIndex + 1} / ${bannerSlides.length}, ${bannerNames[activeBannerIndex] || "배너"}`;
-    }
-  };
-
-  const clearBannerAutoplay = () => {
-    window.clearTimeout(bannerAutoplayTimer);
-    bannerAutoplayTimer = 0;
-  };
-
-  const settleBannerClone = (physicalIndex = bannerPhysicalIndex) => {
-    if (!bannerViewport || !bannerSlides.length) return;
-
-    let settledPhysicalIndex = physicalIndex;
-    if (physicalIndex <= 0) settledPhysicalIndex = bannerSlides.length;
-    if (physicalIndex >= bannerSlides.length + 1) settledPhysicalIndex = 1;
-    if (settledPhysicalIndex === physicalIndex) return false;
-
-    bannerPhysicalIndex = settledPhysicalIndex;
-    window.cancelAnimationFrame(bannerResetFrame);
-    bannerViewport.classList.add("is-jump-resetting");
-    bannerViewport.style.scrollBehavior = "auto";
-    bannerViewport.style.scrollSnapType = "none";
-    bannerViewport.scrollLeft = bannerViewport.clientWidth * settledPhysicalIndex;
-    setActiveBannerSlide(getBannerLogicalIndex(settledPhysicalIndex));
-    bannerResetFrame = window.requestAnimationFrame(() => {
-      bannerResetFrame = window.requestAnimationFrame(() => {
-        bannerViewport.style.removeProperty("scroll-behavior");
-        bannerViewport.style.removeProperty("scroll-snap-type");
-        bannerViewport.classList.remove("is-jump-resetting");
-      });
-    });
-    return true;
-  };
-
-  const finishBannerMovement = () => {
-    if (!bannerViewport || bannerIsDragging) return;
-
-    const slideWidth = Math.max(bannerViewport.clientWidth, 1);
-    const physicalIndex = Math.min(
-      Math.max(Math.round(bannerViewport.scrollLeft / slideWidth), 0),
-      bannerSlides.length + 1
-    );
-    bannerPhysicalIndex = physicalIndex;
-    settleBannerClone(physicalIndex);
-    bannerIsTransitioning = false;
-
-    if (bannerQueuedIndex !== null) {
-      const queuedIndex = bannerQueuedIndex;
-      bannerQueuedIndex = null;
-      window.requestAnimationFrame(() => scrollToBannerSlide(queuedIndex));
-      return;
-    }
-
-    scheduleBannerAutoplay();
-  };
-
-  const scrollToBannerPhysicalSlide = (physicalIndex, behavior = reduceMotion.matches ? "auto" : "smooth") => {
-    if (!bannerViewport || !bannerSlides.length) return;
-
-    const boundedPhysicalIndex = Math.min(Math.max(physicalIndex, 0), bannerSlides.length + 1);
-    bannerPhysicalIndex = boundedPhysicalIndex;
-    bannerIsTransitioning = behavior === "smooth";
-    setActiveBannerSlide(getBannerLogicalIndex(boundedPhysicalIndex));
-    bannerViewport.scrollTo({
-      left: bannerViewport.clientWidth * boundedPhysicalIndex,
-      behavior
-    });
-    if (behavior === "auto") finishBannerMovement();
-  };
-
-  const scrollToBannerSlide = (index, behavior = reduceMotion.matches ? "auto" : "smooth") => {
-    if (!bannerViewport || !bannerSlides.length) return;
-
-    if (bannerIsTransitioning && behavior === "smooth") {
-      bannerQueuedIndex = index;
-      return;
-    }
-
-    const logicalIndex = getNormalizedBannerIndex(index);
-    let physicalIndex = logicalIndex + 1;
-
-    if (index >= bannerSlides.length && activeBannerIndex === bannerSlides.length - 1) {
-      physicalIndex = bannerSlides.length + 1;
-    } else if (index < 0 && activeBannerIndex === 0) {
-      physicalIndex = 0;
-    }
-
-    scrollToBannerPhysicalSlide(physicalIndex, behavior);
-  };
-
-  const scheduleBannerAutoplay = () => {
-    clearBannerAutoplay();
-    if (reduceMotion.matches || bannerPointerInside || bannerHasFocus || bannerIsDragging || bannerIsTransitioning || document.hidden) return;
-
-    bannerAutoplayTimer = window.setTimeout(() => {
-      scrollToBannerSlide(activeBannerIndex + 1);
-    }, 3000);
-  };
-
-  const syncBannerSlideFromScroll = () => {
-    bannerScrollFrame = false;
-    if (!bannerViewport || !bannerSlides.length || bannerIsDragging) return;
-
-    const slideWidth = Math.max(bannerViewport.clientWidth, 1);
-    bannerPhysicalIndex = Math.min(
-      Math.max(Math.round(bannerViewport.scrollLeft / slideWidth), 0),
-      bannerSlides.length + 1
-    );
-    setActiveBannerSlide(getBannerLogicalIndex(bannerPhysicalIndex));
-  };
-
+  /* Banner: Swiper owns the transform and loop. Other sliders remain untouched. */
   const setupBannerSlider = () => {
-    if (!bannerSlider || !bannerViewport || !bannerTrack || !bannerSlides.length) return;
+    if (!bannerSlider || !bannerViewport || !bannerSlides.length || typeof Swiper === "undefined") return;
 
     bannerSlides.forEach((slide, index) => {
-      slide.dataset.bannerLogical = String(index);
       slide.setAttribute("role", "group");
       slide.setAttribute("aria-label", `${index + 1} / ${bannerSlides.length}`);
+      slide.querySelectorAll("img").forEach((image) => { image.draggable = false; });
     });
 
-    const firstClone = bannerSlides[0].cloneNode(true);
-    const lastClone = bannerSlides[bannerSlides.length - 1].cloneNode(true);
-    firstClone.removeAttribute("data-banner-slide");
-    lastClone.removeAttribute("data-banner-slide");
-    firstClone.dataset.bannerClone = "true";
-    lastClone.dataset.bannerClone = "true";
-    firstClone.classList.add("banner-slide--clone");
-    lastClone.classList.add("banner-slide--clone");
-    firstClone.setAttribute("aria-hidden", "true");
-    lastClone.setAttribute("aria-hidden", "true");
-    firstClone.inert = true;
-    lastClone.inert = true;
-    bannerTrack.prepend(lastClone);
-    bannerTrack.append(firstClone);
-    bannerAllSlides = [...bannerTrack.children];
-
-    bannerAllSlides.forEach((slide) => {
-      slide.querySelectorAll("img").forEach((image) => {
-        image.draggable = false;
+    const updateBannerState = (swiper) => {
+      const index = swiper.realIndex;
+      bannerSlides.forEach((slide, slideIndex) => {
+        const isActive = index === slideIndex;
+        slide.classList.toggle("is-active", isActive);
+        slide.setAttribute("aria-hidden", String(!isActive));
       });
-    });
-
-    setActiveBannerSlide(0);
-    window.requestAnimationFrame(() => {
-      bannerPhysicalIndex = 1;
-      bannerViewport.scrollTo({ left: bannerViewport.clientWidth, behavior: "auto" });
-      scheduleBannerAutoplay();
-    });
-
-    bannerViewport.addEventListener("scroll", () => {
-      if (!bannerScrollFrame) {
-        bannerScrollFrame = true;
-        window.requestAnimationFrame(syncBannerSlideFromScroll);
+      bannerDots.forEach((dot, dotIndex) => {
+        const isActive = index === dotIndex;
+        dot.classList.toggle("is-active", isActive);
+        if (isActive) dot.setAttribute("aria-current", "true");
+        else dot.removeAttribute("aria-current");
+      });
+      if (bannerStatus) {
+        bannerStatus.textContent = `${index + 1} / ${bannerSlides.length}, ${bannerNames[index] || "배너"}`;
       }
+    };
 
-      window.clearTimeout(bannerScrollEndTimer);
-      bannerScrollEndTimer = window.setTimeout(finishBannerMovement, 220);
-    }, { passive: true });
-
-    if ("onscrollend" in bannerViewport) {
-      bannerViewport.addEventListener("scrollend", finishBannerMovement, { passive: true });
-    }
+    const swiper = new Swiper(bannerViewport, {
+      slidesPerView: 1,
+      loop: true,
+      speed: reduceMotion.matches ? 0 : 620,
+      grabCursor: true,
+      simulateTouch: true,
+      threshold: 5,
+      longSwipesRatio: 0.025,
+      longSwipesMs: 400,
+      shortSwipes: true,
+      slidesPerGroup: 1,
+      watchOverflow: true,
+      preventClicks: true,
+      loopPreventsSliding: false,
+      autoplay: reduceMotion.matches ? false : {
+        delay: 3000,
+        disableOnInteraction: false,
+        pauseOnMouseEnter: true
+      },
+      on: {
+        init: updateBannerState,
+        slideChange: updateBannerState
+      }
+    });
 
     bannerDots.forEach((dot) => {
       dot.addEventListener("click", () => {
-        scrollToBannerSlide(Number(dot.dataset.bannerDot));
+        swiper.slideToLoop(Number(dot.dataset.bannerDot));
         window.setTimeout(() => dot.blur(), 0);
       });
     });
 
     bannerSlider.addEventListener("keydown", (event) => {
       if (!["ArrowRight", "PageDown", "ArrowLeft", "PageUp", "Home", "End"].includes(event.key)) return;
-
       event.preventDefault();
-      if (event.key === "Home") {
-        scrollToBannerSlide(0);
-      } else if (event.key === "End") {
-        scrollToBannerSlide(bannerSlides.length - 1);
-      } else {
-        const direction = event.key === "ArrowRight" || event.key === "PageDown" ? 1 : -1;
-        scrollToBannerSlide(activeBannerIndex + direction);
-      }
+      if (event.key === "Home") swiper.slideToLoop(0);
+      else if (event.key === "End") swiper.slideToLoop(bannerSlides.length - 1);
+      else if (event.key === "ArrowRight" || event.key === "PageDown") swiper.slideNext();
+      else swiper.slidePrev();
     });
 
-    bannerSlider.addEventListener("pointerenter", () => {
-      bannerPointerInside = true;
-      clearBannerAutoplay();
-    });
-    bannerSlider.addEventListener("pointerleave", () => {
-      bannerPointerInside = false;
-      scheduleBannerAutoplay();
-    });
-    bannerSlider.addEventListener("focusin", () => {
-      bannerHasFocus = true;
-      clearBannerAutoplay();
-    });
+    bannerSlider.addEventListener("focusin", () => swiper.autoplay?.stop());
     bannerSlider.addEventListener("focusout", () => {
       window.setTimeout(() => {
-        bannerHasFocus = bannerSlider.contains(document.activeElement);
-        scheduleBannerAutoplay();
+        if (!bannerSlider.contains(document.activeElement) && !reduceMotion.matches) swiper.autoplay?.start();
       }, 0);
     });
-
-    bannerViewport.addEventListener("pointerdown", (event) => {
-      clearBannerAutoplay();
-      if (event.pointerType !== "mouse" || event.button !== 0) return;
-
-      bannerIsDragging = true;
-      bannerDragMoved = false;
-      bannerPointerId = event.pointerId;
-      bannerDragStartX = event.clientX;
-      bannerDragStartScrollLeft = bannerViewport.scrollLeft;
-      bannerViewport.setPointerCapture?.(event.pointerId);
-    });
-
-    bannerViewport.addEventListener("pointermove", (event) => {
-      if (!bannerIsDragging || event.pointerId !== bannerPointerId) return;
-
-      const distance = event.clientX - bannerDragStartX;
-      if (Math.abs(distance) > 4) bannerDragMoved = true;
-      if (!bannerDragMoved) return;
-
-      event.preventDefault();
-      bannerViewport.classList.add("is-dragging");
-      bannerViewport.scrollLeft = bannerDragStartScrollLeft - distance;
-    });
-
-    const finishBannerDrag = (event) => {
-      if (!bannerIsDragging || event.pointerId !== bannerPointerId) return;
-
-      bannerIsDragging = false;
-      bannerPointerId = null;
-      bannerViewport.classList.remove("is-dragging");
-      if (bannerViewport.hasPointerCapture?.(event.pointerId)) {
-        bannerViewport.releasePointerCapture(event.pointerId);
-      }
-
-      const slideWidth = Math.max(bannerViewport.clientWidth, 1);
-      scrollToBannerPhysicalSlide(Math.round(bannerViewport.scrollLeft / slideWidth));
-    };
-
-    bannerViewport.addEventListener("pointerup", finishBannerDrag);
-    bannerViewport.addEventListener("pointercancel", finishBannerDrag);
-
     document.addEventListener("visibilitychange", () => {
-      if (document.hidden) {
-        clearBannerAutoplay();
-      } else {
-        scheduleBannerAutoplay();
-      }
+      if (document.hidden) swiper.autoplay?.stop();
+      else if (!reduceMotion.matches) swiper.autoplay?.start();
     });
-
-    const handleBannerMotionPreference = () => scheduleBannerAutoplay();
+    const onMotionPreferenceChange = () => {
+      swiper.params.speed = reduceMotion.matches ? 0 : 620;
+      if (reduceMotion.matches) swiper.autoplay?.stop();
+      else swiper.autoplay?.start();
+    };
     if (typeof reduceMotion.addEventListener === "function") {
-      reduceMotion.addEventListener("change", handleBannerMotionPreference);
+      reduceMotion.addEventListener("change", onMotionPreferenceChange);
     } else {
-      reduceMotion.addListener(handleBannerMotionPreference);
+      reduceMotion.addListener(onMotionPreferenceChange);
     }
+  };
 
-    window.addEventListener("resize", () => {
-      bannerIsTransitioning = false;
-      bannerQueuedIndex = null;
-      bannerPhysicalIndex = activeBannerIndex + 1;
-      bannerViewport.scrollTo({
-        left: bannerViewport.clientWidth * bannerPhysicalIndex,
-        behavior: "auto"
-      });
-      scheduleBannerAutoplay();
-    });
+  /* ABOUT ME background stays in its section while the pointer only nudges its center. */
+  const setupAboutOrb = () => {
+    const section = document.querySelector(".about-section");
+    const stage = section?.querySelector(".about-section__orb-stage");
+    if (!section || !stage || reduceMotion.matches) return;
+
+    let currentX = 0, currentY = 0, targetX = 0, targetY = 0;
+    let frame = 0;
+    const animate = () => {
+      currentX += (targetX - currentX) * 0.09;
+      currentY += (targetY - currentY) * 0.09;
+      stage.style.setProperty("--orb-pointer-x", `${currentX.toFixed(2)}px`);
+      stage.style.setProperty("--orb-pointer-y", `${currentY.toFixed(2)}px`);
+      if (Math.abs(targetX - currentX) > 0.05 || Math.abs(targetY - currentY) > 0.05) {
+        frame = window.requestAnimationFrame(animate);
+      } else {
+        frame = 0;
+      }
+    };
+    const ensureFrame = () => { if (!frame) frame = window.requestAnimationFrame(animate); };
+    section.addEventListener("pointermove", (event) => {
+      if (event.pointerType !== "mouse" && event.pointerType !== "pen") return;
+      targetX = ((event.clientX / window.innerWidth) - 0.5) * 20;
+      targetY = ((event.clientY / window.innerHeight) - 0.5) * 14;
+      ensureFrame();
+    }, { passive: true });
+    section.addEventListener("pointerleave", () => {
+      targetX = targetY = 0;
+      ensureFrame();
+    }, { passive: true });
   };
 
   /* Guided navigation through each section title frame */
@@ -1129,6 +930,7 @@
   setupPopupGallery();
   setupPosterSection();
   setupBannerSlider();
+  setupAboutOrb();
   setupAboutReveal();
   setupDetailCardStateReset();
   updatePage();
