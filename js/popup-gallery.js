@@ -35,7 +35,7 @@
       title: "A TWOSOME PLACE",
       image: "./img/popup-twosome_drink.png",
       alt: "투썸플레이스 화이트 피치 신메뉴 팝업 디자인",
-      description: "핑크와 피치 계열의 색감에 음료와 복숭아를 크게 배치해\n신메뉴의 주목도를 높였으며, 청량한 탄산 질감과 손글씨를 활용해\n여름 메뉴의 달콤하고 산뜻한 이미지를 표현했습니다."
+      description: "핑크와 피치 계열의 색감에 음료와 복숭아를 크게 배치해 신메뉴의 주목도를 높였으며,\n 청량한 탄산 질감과 손글씨를 활용해\n여름 메뉴의 달콤하고 산뜻한 이미지를 표현했습니다."
     },
     {
       title: "OLIVE YOUNG × TORRIDEN",
