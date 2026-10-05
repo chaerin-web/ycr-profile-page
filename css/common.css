@@ -25,6 +25,46 @@
   --sphere-opacity: 1;
   --section-title-padding-top: 96px;
   --section-title-padding-x: var(--page-padding-desktop);
+  /* POPUP DESIGN is the reference for the content section heading system. */
+  --section-heading-color: #170000;
+  --section-heading-size: 100px;
+  --section-heading-weight: 900;
+  --section-heading-line-height: 0.92;
+  --section-subtitle-color: #211e1d;
+  --section-subtitle-size: 22px;
+  --section-subtitle-weight: 400;
+  --section-subtitle-line-height: 1.5;
+  --section-subtitle-gap: 20px;
+}
+
+@media (min-width: 1025px) and (max-width: 1440px) {
+  :root {
+    --section-heading-size: clamp(72px, 7vw, 100px);
+  }
+}
+
+@media (max-width: 1024px) {
+  :root {
+    --section-heading-size: 72px;
+    --section-subtitle-size: 20px;
+    --section-subtitle-gap: 16px;
+  }
+}
+
+@media (max-width: 768px) {
+  :root {
+    --section-heading-size: 56px;
+    --section-subtitle-size: 16px;
+    --section-subtitle-gap: 14px;
+  }
+}
+
+@media (max-width: 560px) {
+  :root {
+    --section-heading-size: clamp(36px, 11vw, 42px);
+    --section-subtitle-size: 12px;
+    --section-subtitle-gap: 12px;
+  }
 }
 
 /* Reset / base */

@@ -1303,3 +1303,44 @@
   .about-section__orb-float,
   .about-section__orb-caustics img { animation: none; }
 }
+
+/* Shared title and subtitle styles for ABOUT ME and SELECTED WORKS content. */
+:is(.about-section .about-section__intro, .portfolio-section .section-content-heading) > h2 {
+  color: var(--section-heading-color);
+  font-family: var(--font-family-base);
+  font-size: var(--section-heading-size);
+  font-weight: var(--section-heading-weight);
+  line-height: var(--section-heading-line-height);
+}
+
+:is(.about-section .about-section__intro, .portfolio-section .section-content-heading) > p {
+  margin-top: var(--section-subtitle-gap);
+  color: var(--section-subtitle-color);
+  font-size: var(--section-subtitle-size);
+  font-weight: var(--section-subtitle-weight);
+  line-height: var(--section-subtitle-line-height);
+}
+
+@media (min-width: 1025px) and (max-width: 1440px) {
+  .attitude-layout {
+    grid-template-columns: minmax(350px, 0.76fr) minmax(0, 1.4fr);
+  }
+
+  .poster-section.portfolio-section {
+    grid-template-columns: minmax(350px, 32vw) minmax(0, 1fr);
+  }
+}
+
+@media (min-width: 769px) and (max-width: 900px) {
+  .attitude-layout {
+    display: block;
+  }
+
+  .attitude-layout .about-section__left--attitude {
+    position: static;
+  }
+
+  .attitude-layout .attitude-grid {
+    padding-top: 3rem;
+  }
+}
