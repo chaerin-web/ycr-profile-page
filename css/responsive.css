@@ -615,6 +615,10 @@
     right: 36px;
   }
 
+  .scroll-top-button {
+    right: 36px;
+  }
+
   .section-transition__title {
     font-size: clamp(96px, 8.2vw, 118px);
   }

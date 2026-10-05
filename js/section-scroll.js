@@ -2,6 +2,7 @@
   const core = window.PortfolioCore || {};
   const root = document.documentElement;
   const siteHeader = document.querySelector(".site-header");
+  const scrollTopButton = document.querySelector(".scroll-top-button");
   const headerSectionTitle = document.querySelector("[data-header-section-title]");
   const heroTransition = document.querySelector(".hero-transition");
   const hero = document.querySelector(".hero");
@@ -170,14 +171,22 @@
 
     if (currentScrollY <= 24) {
       siteHeader.classList.remove("is-hidden");
+      scrollTopButton?.classList.remove("is-visible");
+      scrollTopButton?.setAttribute("aria-hidden", "true");
+      scrollTopButton?.setAttribute("tabindex", "-1");
       lastHeaderScrollY = currentScrollY;
       return;
     }
 
-    if (Math.abs(scrollDelta) < 8) return;
+    if (Math.abs(scrollDelta) >= 8) {
+      siteHeader.classList.toggle("is-hidden", scrollDelta > 0);
+      lastHeaderScrollY = currentScrollY;
+    }
 
-    siteHeader.classList.toggle("is-hidden", scrollDelta > 0);
-    lastHeaderScrollY = currentScrollY;
+    const visible = currentScrollY > 160 && !siteHeader.classList.contains("is-hidden");
+    scrollTopButton?.classList.toggle("is-visible", visible);
+    scrollTopButton?.setAttribute("aria-hidden", String(!visible));
+    scrollTopButton?.setAttribute("tabindex", visible ? "0" : "-1");
   };
 
   const updateHeroSphere = () => {

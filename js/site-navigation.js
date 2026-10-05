@@ -4,6 +4,7 @@
   const lenis = core.lenis || null;
   const siteHeader = document.querySelector(".site-header");
   const heroScrollCue = document.querySelector(".hero__scroll-cue");
+  const scrollTopButton = document.querySelector(".scroll-top-button");
   const menuLinks = [...document.querySelectorAll(".menu-panel a, .site-header__contact")];
   const submenuToggles = [...document.querySelectorAll("[data-submenu-toggle]")];
 
@@ -93,6 +94,19 @@
           return;
         }
 
+        const sectionId = link.dataset.navSection;
+        const section = sectionId && document.getElementById(sectionId);
+        if (section) {
+          event.preventDefault();
+          cancelGuidedHeroScroll();
+          if (window.location.hash !== link.hash) {
+            window.history.pushState(null, "", link.hash);
+          }
+          (core.scrollToTarget || ((target) => target.scrollIntoView({ behavior: "smooth" })))(section, {
+            lenis: { duration: 1.2 }
+          });
+        }
+
         closeSubmenus();
         window.setTimeout(() => link.blur(), 0);
       });
@@ -138,6 +152,13 @@
 
   heroScrollCue?.addEventListener("click", (event) => {
     startGuidedSectionScroll(event, "about-me", "about-content");
+  });
+  scrollTopButton?.addEventListener("click", () => {
+    cancelGuidedHeroScroll();
+    (core.scrollToTarget || ((top) => window.scrollTo({ top, behavior: "smooth" })))(0, {
+      lenis: { duration: 1.3 }
+    });
+    scrollTopButton.blur();
   });
   window.addEventListener("wheel", cancelGuidedHeroScroll, { passive: true });
   window.addEventListener("touchstart", cancelGuidedHeroScroll, { passive: true });
