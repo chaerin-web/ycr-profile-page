@@ -4152,7 +4152,7 @@ body.is-detail-hover-reset .detail-card__cta {
   z-index: 3;
   display: grid;
   width: 100%;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: clamp(24px, 3.2vw, 62px);
   margin: clamp(54px, 5.2vw, 92px) auto 0;
 }
@@ -4163,7 +4163,7 @@ body.is-detail-hover-reset .detail-card__cta {
 
 .detail-card__media {
   position: relative;
-  aspect-ratio: 627 / 1040;
+  aspect-ratio: 432 / 800;
   margin: 0;
   overflow: hidden;
   background: #eee5db;
@@ -4243,6 +4243,7 @@ body.is-detail-hover-reset .detail-card__cta {
   font-size: 1rem;
   font-weight: 400;
   line-height: 1.45;
+  text-align: center;
 }
 
 .detail-card:hover .detail-card__media>img,
@@ -4316,6 +4317,7 @@ body.is-detail-hover-reset .detail-card__cta {
   }
 
   .detail-showcase__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 26px;
   }
 
@@ -4381,12 +4383,6 @@ body.is-detail-hover-reset .detail-card__cta {
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 38px 24px;
     margin-top: 46px;
-  }
-
-  .detail-card:last-child {
-    grid-column: 1 / -1;
-    width: calc((100% - 24px) / 2);
-    justify-self: center;
   }
 }
 
