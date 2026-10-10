@@ -19,6 +19,8 @@
   let popupDragMoved = false;
   let popupPointerId = null;
   let popupDragStartX = 0;
+  let popupDragStartY = 0;
+  let popupFrame = 0;
   let popupDragStartOffset = 0;
   let popupIsOutside = true;
   let popupSuppressClickUntil = 0;
@@ -111,7 +113,11 @@
   };
 
   const animatePopupTrack = (timestamp) => {
-    if (!popupTrack || reduceMotion.matches) return;
+    popupFrame = 0;
+    if (!popupTrack || reduceMotion.matches || popupIsOutside || document.hidden) {
+      popupLastFrame = 0;
+      return;
+    }
 
     const delta = popupLastFrame ? Math.min(timestamp - popupLastFrame, 48) : 0;
     popupLastFrame = timestamp;
@@ -121,7 +127,14 @@
       renderPopupTrack();
     }
 
-    window.requestAnimationFrame(animatePopupTrack);
+    popupFrame = window.requestAnimationFrame(animatePopupTrack);
+  };
+
+  const requestPopupAnimation = () => {
+    if (!popupFrame && !popupIsOutside && !document.hidden && !reduceMotion.matches) {
+      popupLastFrame = 0;
+      popupFrame = window.requestAnimationFrame(animatePopupTrack);
+    }
   };
 
   const closePopupModal = () => {
@@ -237,9 +250,10 @@
       popupDragMoved = false;
       popupPointerId = event.pointerId;
       popupDragStartX = event.clientX;
+      popupDragStartY = event.clientY;
       popupDragStartOffset = popupOffset;
       popupMarquee.classList.add("is-dragging");
-      popupMarquee.setPointerCapture?.(event.pointerId);
+
       syncPopupPause();
     });
 
@@ -247,10 +261,17 @@
       if (!popupIsDragging || event.pointerId !== popupPointerId) return;
 
       const distance = event.clientX - popupDragStartX;
-      if (Math.abs(distance) > 4) popupDragMoved = true;
-      if (!popupDragMoved) return;
-
-      event.preventDefault();
+      if (!popupDragMoved) {
+        const verticalDistance = event.clientY - popupDragStartY;
+        if (Math.abs(verticalDistance) > 6 && Math.abs(verticalDistance) > Math.abs(distance)) {
+          finishPopupDrag(event);
+          return; // Leave vertical touch scrolling entirely to the browser.
+        }
+        if (Math.abs(distance) <= 6) return;
+        popupDragMoved = true;
+        popupMarquee.setPointerCapture?.(event.pointerId);
+      }
+      if (event.cancelable) event.preventDefault();
       popupOffset = wrapPopupOffset(popupDragStartOffset - distance);
       renderPopupTrack();
     });
@@ -273,6 +294,8 @@
 
     popupMarquee.addEventListener("pointerup", finishPopupDrag);
     popupMarquee.addEventListener("pointercancel", finishPopupDrag);
+    popupMarquee.addEventListener("lostpointercapture", finishPopupDrag);
+    window.addEventListener("pointerup", finishPopupDrag);
     popupMarquee.addEventListener("click", (event) => {
       if (performance.now() >= popupSuppressClickUntil) return;
       event.preventDefault();
@@ -306,6 +329,7 @@
       const observer = new IntersectionObserver(([entry]) => {
         popupIsOutside = !entry.isIntersecting;
         popupMarquee.classList.toggle("is-outside", popupIsOutside);
+        requestPopupAnimation();
       }, { threshold: 0.06 });
       observer.observe(popupMarquee);
     } else {
@@ -314,7 +338,8 @@
 
     updatePopupMetrics();
     window.addEventListener("resize", updatePopupMetrics);
-    if (!reduceMotion.matches) window.requestAnimationFrame(animatePopupTrack);
+    document.addEventListener("visibilitychange", requestPopupAnimation);
+    requestPopupAnimation();
   };
 
   setupPopupGallery();

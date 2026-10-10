@@ -24,6 +24,15 @@
   const smoothstep = (value) => value * value * (3 - 2 * value);
   const staggerProgress = (progress, start, end) => smoothstep(clamp((progress - start) / (end - start)));
 
+  // Touch takes ownership immediately, including during a menu/top-button animation.
+  // Cancelling only the delayed title step does not stop Lenis' current RAF tween.
+  const cancelScrollAnimation = () => {
+    if (lenis?.isScrolling === "smooth") {
+      lenis.scrollTo(lenis.actualScroll, { immediate: true, force: true });
+    }
+  };
+  window.addEventListener("touchstart", cancelScrollAnimation, { passive: true });
+
   const scrollToTarget = (target, options = {}) => {
     const behavior = reduceMotion.matches ? "auto" : options.behavior || "smooth";
 
@@ -49,6 +58,7 @@
     clamp,
     smoothstep,
     staggerProgress,
-    scrollToTarget
+    scrollToTarget,
+    cancelScrollAnimation
   };
 })();

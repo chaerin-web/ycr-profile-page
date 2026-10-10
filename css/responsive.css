@@ -1344,3 +1344,11 @@
     padding-top: 3rem;
   }
 }
+
+/* A loop reorders slides and reveals translate cards. Neither is a page scroll anchor. */
+.banner-slider__viewport,
+.popup-marquee,
+.skill-card,
+.attitude-card {
+  overflow-anchor: none;
+}

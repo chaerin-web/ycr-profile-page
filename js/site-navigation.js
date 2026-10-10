@@ -13,6 +13,7 @@
   const NAV_SECTION_TITLE_HOLD_MS = 250;
 
   let guidedHeroScrollId = 0;
+  let guidedScrollTimer = 0;
 
   const startGuidedSectionScroll = (event, introId, contentId, holdDuration = SECTION_TITLE_HOLD_MS) => {
     const introSection = document.getElementById(introId);
@@ -20,6 +21,7 @@
     if (!introSection || !contentSection) return false;
 
     event?.preventDefault();
+    window.clearTimeout(guidedScrollTimer);
     guidedHeroScrollId += 1;
     const currentRun = guidedHeroScrollId;
 
@@ -29,7 +31,7 @@
     }
 
     const introTop = window.scrollY + introSection.getBoundingClientRect().top;
-    const introDistance = Math.max(introSection.offsetHeight - window.innerHeight, 1);
+    const introDistance = Math.max(introSection.offsetHeight - (introSection.querySelector(".section-transition__sticky")?.offsetHeight || window.innerHeight), 1);
     const titleFrameY = introTop + introDistance * 0.43;
     siteHeader?.classList.remove("is-hidden");
 
@@ -39,7 +41,8 @@
       window.scrollTo({ top: titleFrameY, behavior: "smooth" });
     }
 
-    window.setTimeout(() => {
+    guidedScrollTimer = window.setTimeout(() => {
+      guidedScrollTimer = 0;
       if (currentRun !== guidedHeroScrollId) return;
       if (lenis) {
         lenis.scrollTo(contentSection, { duration: 1.15 });
@@ -51,6 +54,8 @@
   };
 
   const cancelGuidedHeroScroll = () => {
+    window.clearTimeout(guidedScrollTimer);
+    guidedScrollTimer = 0;
     guidedHeroScrollId += 1;
   };
 
