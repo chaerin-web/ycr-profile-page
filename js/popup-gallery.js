@@ -10,6 +10,13 @@
   const popupModalTitle = document.querySelector("[data-popup-modal-title]");
   const popupModalDescription = document.querySelector("[data-popup-modal-description]");
   const popupModalCount = document.querySelector("[data-popup-modal-count]");
+  const mobilePopup = window.matchMedia("(max-width: 768px)");
+  const popupPrev = document.querySelector("[data-popup-prev]");
+  const popupNext = document.querySelector("[data-popup-next]");
+  let mobileIndex = 0;
+  let mobileMaxOffset = 0;
+  let mobileStep = 0;
+  let lastMarqueeWidth = 0;
   const popupModalClose = document.querySelector("[data-popup-close]");
 
   let popupListWidth = 0;
@@ -105,16 +112,31 @@
     popupTrack.style.transform = `translate3d(${(-popupOffset).toFixed(2)}px, 0, 0)`;
   };
 
+  const renderMobilePopup = () => {
+    popupOffset = Math.min(mobileIndex * mobileStep, mobileMaxOffset);
+    renderPopupTrack();
+    if (popupPrev) popupPrev.disabled = mobileIndex === 0;
+    if (popupNext) popupNext.disabled = popupOffset >= mobileMaxOffset - 1;
+  };
+
   const updatePopupMetrics = () => {
     if (!popupList) return;
     popupListWidth = popupList.getBoundingClientRect().width;
+    if (mobilePopup.matches) {
+      const cards = [...popupList.children];
+      mobileStep = cards.length > 1 ? cards[1].getBoundingClientRect().left - cards[0].getBoundingClientRect().left : 0;
+      mobileMaxOffset = Math.max(0, popupListWidth - popupMarquee.clientWidth);
+      mobileIndex = Math.min(mobileIndex, mobileStep ? Math.ceil(mobileMaxOffset / mobileStep) : 0);
+      renderMobilePopup();
+      return;
+    }
     popupOffset = wrapPopupOffset(popupOffset);
     renderPopupTrack();
   };
 
   const animatePopupTrack = (timestamp) => {
     popupFrame = 0;
-    if (!popupTrack || reduceMotion.matches || popupIsOutside || document.hidden) {
+    if (!popupTrack || mobilePopup.matches || reduceMotion.matches || popupIsOutside || document.hidden) {
       popupLastFrame = 0;
       return;
     }
@@ -131,7 +153,7 @@
   };
 
   const requestPopupAnimation = () => {
-    if (!popupFrame && !popupIsOutside && !document.hidden && !reduceMotion.matches) {
+    if (!mobilePopup.matches && !popupFrame && !popupIsOutside && !document.hidden && !reduceMotion.matches) {
       popupLastFrame = 0;
       popupFrame = window.requestAnimationFrame(animatePopupTrack);
     }
@@ -244,7 +266,7 @@
     });
 
     popupMarquee.addEventListener("pointerdown", (event) => {
-      if (reduceMotion.matches || event.button !== 0 || event.target.closest("[data-popup-open]")) return;
+      if (mobilePopup.matches || reduceMotion.matches || event.button !== 0 || event.target.closest("[data-popup-open]")) return;
 
       popupIsDragging = true;
       popupDragMoved = false;
@@ -336,8 +358,39 @@
       popupIsOutside = false;
     }
 
-    updatePopupMetrics();
-    window.addEventListener("resize", updatePopupMetrics);
+    const switchPopupMode = () => {
+      if (popupPointerId !== null && popupMarquee.hasPointerCapture?.(popupPointerId)) {
+        popupMarquee.releasePointerCapture(popupPointerId);
+      }
+      popupIsDragging = false;
+      popupPointerId = null;
+      popupMarquee.classList.remove("is-dragging");
+      clearPopupCardStates();
+      window.cancelAnimationFrame(popupFrame);
+      popupFrame = 0;
+      popupLastFrame = 0;
+      popupOffset = 0;
+      mobileIndex = 0;
+      updatePopupMetrics();
+      lastMarqueeWidth = popupMarquee.clientWidth;
+      requestPopupAnimation();
+    };
+    const moveMobilePopup = (direction) => {
+      if (!mobilePopup.matches || popupModal?.open || !mobileStep) return;
+      mobileIndex = Math.max(0, Math.min(Math.ceil(mobileMaxOffset / mobileStep), mobileIndex + direction));
+      clearPopupCardStates();
+      renderMobilePopup();
+    };
+    popupPrev?.addEventListener("click", () => moveMobilePopup(-1));
+    popupNext?.addEventListener("click", () => moveMobilePopup(1));
+    mobilePopup.addEventListener("change", switchPopupMode);
+    switchPopupMode();
+    window.addEventListener("resize", () => {
+      // A mobile address bar resize must not reposition the selected work.
+      if (popupMarquee.clientWidth === lastMarqueeWidth) return;
+      lastMarqueeWidth = popupMarquee.clientWidth;
+      updatePopupMetrics();
+    });
     document.addEventListener("visibilitychange", requestPopupAnimation);
     requestPopupAnimation();
   };

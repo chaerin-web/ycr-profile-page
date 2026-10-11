@@ -489,7 +489,13 @@
       </header>
 
       <div class="popup-marquee" data-popup-marquee aria-label="팝업 디자인 작업물">
-        <div class="popup-track" data-popup-track>
+        <button class="popup-nav popup-nav--prev" type="button" data-popup-prev aria-label="이전 팝업 작품" aria-controls="popup-track" disabled>
+          <img src="./img/arrow.svg" alt="">
+        </button>
+        <button class="popup-nav popup-nav--next" type="button" data-popup-next aria-label="다음 팝업 작품" aria-controls="popup-track">
+          <img src="./img/arrow.svg" alt="">
+        </button>
+        <div class="popup-track" id="popup-track" data-popup-track>
           <div class="popup-list" data-popup-list>
             <article class="popup-card" data-popup-index="0">
               <div class="popup-card__float">
