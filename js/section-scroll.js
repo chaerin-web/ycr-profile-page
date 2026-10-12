@@ -35,7 +35,7 @@
     ...sectionCopies.map(({ section }) => section), ...sectionTitleRegions
   ].filter(Boolean))];
   let geometry = new Map();
-  let viewportHeight = window.innerHeight;
+  let viewportHeight = (window.PortfolioViewport?.height || window.innerHeight);
   let viewportWidth = window.innerWidth;
   let coverWidth = 1;
   const styleCache = new WeakMap();
@@ -67,7 +67,7 @@
 
     const bounds = geometry.get(section);
     const sticky = sectionTransitions.find((item) => item.section === section)?.sticky;
-    // 100svh stays stable when the mobile address bar opens/closes; innerHeight does not.
+    // Section geometry uses the same stable px height as CSS.
     const scrollDistance = Math.max(bounds.height - (geometry.get(sticky)?.height || viewportHeight), 1);
     return clamp(-bounds.top / scrollDistance);
   };
@@ -240,7 +240,7 @@
     frameRequested = false;
     // A modal temporarily fixes body at scrollY=0; preserve the underlying scene until unlock.
     if (document.body.classList.contains("is-popup-modal-open")) return;
-    viewportHeight = window.innerHeight;
+    viewportHeight = (window.PortfolioViewport?.height || window.innerHeight);
     viewportWidth = window.innerWidth;
     geometry = new Map(measuredElements.map((element) => [element, element.getBoundingClientRect()]));
     coverWidth = sphereCover?.offsetWidth || 1;
@@ -262,6 +262,7 @@
   window.requestAnimationFrame(requestUpdate);
   window.addEventListener("scroll", requestUpdate, { passive: true });
   window.addEventListener("resize", requestUpdate);
+  window.addEventListener("sectionviewportchange", requestUpdate);
 
   if (typeof reduceMotion.addEventListener === "function") {
     reduceMotion.addEventListener("change", requestUpdate);

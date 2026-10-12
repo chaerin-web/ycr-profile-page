@@ -22,7 +22,7 @@
       lastScrollY = currentScrollY;
     }
 
-    stage?.classList.toggle("is-background", currentScrollY >= window.innerHeight * 0.28);
+    stage?.classList.toggle("is-background", currentScrollY >= (window.PortfolioViewport?.height || window.innerHeight) * 0.28);
   };
 
   const requestUpdate = () => {

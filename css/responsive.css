@@ -233,7 +233,7 @@
 }
 
 .poster-work__image {
-  width: min(100%, 430px, max(220px, calc((100svh - 168px) * 2 / 3)));
+  width: min(100%, 430px, max(220px, calc((calc(var(--section-vh, 1vh) * 100) - 168px) * 2 / 3)));
 }
 
 .menu-panel {
@@ -408,7 +408,7 @@
 
 /* Only Web Projects uses the abbreviated title transition. */
 #web-projects.section-transition {
-  height: 165svh;
+  height: calc(var(--section-vh, 1vh) * 165);
 }
 
 #contact {
@@ -424,7 +424,7 @@
 /* Contact */
 .contact-section.portfolio-section {
   display: grid;
-  min-height: 100svh;
+  min-height: calc(var(--section-vh, 1vh) * 100);
   place-items: center;
   padding: clamp(96px, 8vw, 142px) var(--section-title-padding-x) clamp(54px, 5vw, 88px);
   overflow: hidden;
@@ -695,7 +695,7 @@
 /* Tablet */
 @media (max-width: 1024px) {
   #web-projects.section-transition {
-    height: 158svh;
+    height: calc(var(--section-vh, 1vh) * 158);
   }
 
   .attitude-layout {
@@ -705,7 +705,7 @@
 
   .attitude-layout .about-section__left--attitude {
     position: sticky;
-    top: clamp(88px, 11vh, 124px);
+    top: clamp(88px, calc(var(--section-vh, 1vh) * 11), 124px);
   }
 
   .about-section .about-section__title--attitude {
@@ -785,7 +785,7 @@
   }
 
   #web-projects.section-transition {
-    height: 150svh;
+    height: calc(var(--section-vh, 1vh) * 150);
   }
 
   .web-project-section.portfolio-section > .web-project-section__button-layer {
@@ -958,7 +958,7 @@
   }
 
   .contact-section.portfolio-section {
-    min-height: 100svh;
+    min-height: calc(var(--section-vh, 1vh) * 100);
     padding: 96px var(--page-padding-mobile) 48px;
   }
 
@@ -1028,7 +1028,7 @@
   }
 
   .poster-work__image {
-    width: min(82vw, 360px);
+    width: min(82vw, 330px);
   }
   .attitude-profile {
     width: min(72vw, 240px);
@@ -1174,8 +1174,8 @@
   position: sticky;
   z-index: 0;
   top: 0;
-  height: 100svh;
-  margin-bottom: -100svh;
+  height: calc(var(--section-vh, 1vh) * 100);
+  margin-bottom: calc(var(--section-vh, 1vh) * -100);
   overflow: hidden;
   pointer-events: none;
 }

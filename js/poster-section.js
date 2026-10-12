@@ -10,7 +10,7 @@
   const updatePosterNavigation = () => {
     if (!posterWorks.length || !posterNavLinks.length) return;
 
-    const anchorLine = window.innerHeight * (window.innerWidth <= 768 ? 0.58 : 0.46);
+    const anchorLine = (window.PortfolioViewport?.height || window.innerHeight) * (window.innerWidth <= 768 ? 0.58 : 0.46);
     let activeWork = posterWorks[0];
 
     posterWorks.forEach((work) => {

@@ -274,14 +274,14 @@
 .hero-transition {
   position: relative;
   z-index: 2;
-  height: 195svh;
+  height: calc(var(--section-vh, 1vh) * 195);
   background: var(--hero-bg);
 }
 
 .hero {
   position: sticky;
   top: 0;
-  height: 100svh;
+  height: calc(var(--section-vh, 1vh) * 100);
   min-height: 620px;
   overflow: hidden;
   isolation: isolate;
@@ -532,7 +532,7 @@
   --transition-ink: #210403;
   position: relative;
   z-index: 4;
-  height: 235svh;
+  height: calc(var(--section-vh, 1vh) * 235);
   background: var(--transition-from);
 }
 
@@ -560,7 +560,7 @@
 .section-transition__sticky {
   position: sticky;
   top: 0;
-  height: 100svh;
+  height: calc(var(--section-vh, 1vh) * 100);
   min-height: 620px;
   overflow: hidden;
   isolation: isolate;
@@ -625,7 +625,7 @@
 .portfolio-section {
   position: relative;
   isolation: isolate;
-  min-height: 100svh;
+  min-height: calc(var(--section-vh, 1vh) * 100);
   padding: clamp(96px, 12vw, 220px) clamp(28px, 8.8vw, 170px);
   overflow: hidden;
   scroll-margin-top: 0;
@@ -761,7 +761,7 @@
   --about-sphere-y: 62%;
   --about-sphere-opacity: 0.6;
   position: relative;
-  min-height: 900svh;
+  min-height: calc(var(--section-vh, 1vh) * 900);
   padding: 0;
   overflow: clip;
   border-top: 0;
@@ -772,7 +772,7 @@
   position: sticky;
   z-index: 0;
   top: 0;
-  height: 100svh;
+  height: calc(var(--section-vh, 1vh) * 100);
   min-height: 620px;
   padding: var(--section-title-padding-top) var(--section-title-padding-x) 48px;
   overflow: hidden;
@@ -907,7 +907,7 @@
   grid-template-rows: repeat(2, minmax(0, auto));
   align-content: start;
   align-items: start;
-  gap: clamp(22px, 3vh, 38px) clamp(28px, 3.2vw, 62px);
+  gap: clamp(22px, calc(var(--section-vh, 1vh) * 3), 38px) clamp(28px, 3.2vw, 62px);
 }
 
 .attitude-card {
@@ -1037,8 +1037,8 @@
   position: relative;
   isolation: isolate;
   display: grid;
-  height: calc(4 * 100svh);
-  min-height: calc(4 * 100svh);
+  height: calc(4 * calc(var(--section-vh, 1vh) * 100));
+  min-height: calc(4 * calc(var(--section-vh, 1vh) * 100));
   grid-template-columns: minmax(340px, 31vw) minmax(0, 1fr);
   padding: 0;
   overflow: visible;
@@ -1093,7 +1093,7 @@
   z-index: 4;
   top: 0;
   display: flex;
-  height: 100svh;
+  height: calc(var(--section-vh, 1vh) * 100);
   min-height: 620px;
   flex-direction: column;
   align-self: start;
@@ -1192,8 +1192,8 @@
 
 .poster-work {
   display: grid;
-  min-height: 100svh;
-  height: 100svh;
+  min-height: calc(var(--section-vh, 1vh) * 100);
+  height: calc(var(--section-vh, 1vh) * 100);
   grid-template-columns: minmax(280px, 430px) minmax(250px, 380px);
   align-items: center;
   justify-content: center;
@@ -1253,7 +1253,7 @@
 .banner-section.portfolio-section {
   position: relative;
   isolation: isolate;
-  min-height: 100svh;
+  min-height: calc(var(--section-vh, 1vh) * 100);
   padding: 0 0 clamp(72px, 7vw, 132px);
   overflow: hidden;
   background: #fff;
@@ -1281,7 +1281,7 @@
 }
 
 .banner-section__header {
-  min-height: clamp(260px, 29vh, 330px);
+  min-height: clamp(260px, calc(var(--section-vh, 1vh) * 29), 330px);
   padding: var(--section-title-padding-top) var(--section-title-padding-x) 0;
 }
 
@@ -1467,7 +1467,7 @@
 .popup-section.portfolio-section {
   position: relative;
   isolation: isolate;
-  min-height: 100svh;
+  min-height: calc(var(--section-vh, 1vh) * 100);
   padding: 0 0 clamp(64px, 5vw, 96px);
   overflow: hidden;
   border-top: 0;
@@ -1485,7 +1485,7 @@
 }
 
 .popup-section__header {
-  min-height: clamp(260px, 29vh, 330px);
+  min-height: clamp(260px, calc(var(--section-vh, 1vh) * 29), 330px);
   padding: var(--section-title-padding-top) var(--section-title-padding-x) 0;
 }
 
@@ -1510,7 +1510,7 @@
   margin-top: 80px;
   position: relative;
   width: 100%;
-  padding: clamp(26px, 3vh, 42px) 0 clamp(28px, 4vh, 58px);
+  padding: clamp(26px, calc(var(--section-vh, 1vh) * 3), 42px) 0 clamp(28px, calc(var(--section-vh, 1vh) * 4), 58px);
   overflow: hidden;
   cursor: grab;
   touch-action: pan-y;
@@ -1924,7 +1924,7 @@ body.is-popup-modal-open .popup-card__overlay {
   }
 
   .section-transition {
-    height: 225svh;
+    height: calc(var(--section-vh, 1vh) * 225);
   }
 
   .section-transition__title {
@@ -1959,7 +1959,7 @@ body.is-popup-modal-open .popup-card__overlay {
     --skill-rise-distance: 54px;
     --skill-exit-distance: 72px;
     --about-sphere-size: clamp(250px, 31vw, 330px);
-    min-height: 900svh;
+    min-height: calc(var(--section-vh, 1vh) * 900);
   }
 
   .about-section__sticky::before {
@@ -2274,7 +2274,7 @@ body.is-popup-modal-open .popup-card__overlay {
   }
 
   .hero-transition {
-    height: 175svh;
+    height: calc(var(--section-vh, 1vh) * 175);
   }
 
   .hero {
@@ -2320,7 +2320,7 @@ body.is-popup-modal-open .popup-card__overlay {
   }
 
   .section-transition {
-    height: 215svh;
+    height: calc(var(--section-vh, 1vh) * 215);
   }
 
   .section-transition__sticky {
@@ -2355,7 +2355,7 @@ body.is-popup-modal-open .popup-card__overlay {
     --skill-rise-distance: 46px;
     --skill-exit-distance: 62px;
     --about-sphere-size: clamp(210px, 38vw, 290px);
-    min-height: 900svh;
+    min-height: calc(var(--section-vh, 1vh) * 900);
   }
 
   .about-section__sticky {
@@ -2490,7 +2490,7 @@ body.is-popup-modal-open .popup-card__overlay {
   }
 
   .popup-section.portfolio-section {
-    min-height: 100svh;
+    min-height: calc(var(--section-vh, 1vh) * 100);
     padding-top: 0;
   }
 
@@ -2555,7 +2555,7 @@ body.is-popup-modal-open .popup-card__overlay {
   }
 
   .poster-work {
-    min-height: 100svh;
+    min-height: calc(var(--section-vh, 1vh) * 100);
     grid-template-columns: minmax(220px, 310px) minmax(190px, 1fr);
     gap: 26px;
     padding: 48px var(--section-title-padding-x) 64px;
@@ -2694,7 +2694,7 @@ body.is-popup-modal-open .popup-card__overlay {
   }
 
   .section-transition {
-    height: 205svh;
+    height: calc(var(--section-vh, 1vh) * 205);
   }
 
   .section-transition__title {
@@ -2726,7 +2726,7 @@ body.is-popup-modal-open .popup-card__overlay {
     --skill-rise-distance: 38px;
     --skill-exit-distance: 50px;
     --about-sphere-size: clamp(170px, 52vw, 240px);
-    min-height: 900svh;
+    min-height: calc(var(--section-vh, 1vh) * 900);
   }
 
   .hero__sphere-stage {
@@ -2802,7 +2802,7 @@ body.is-popup-modal-open .popup-card__overlay {
     grid-template-columns: 1fr;
     grid-template-rows: auto minmax(0, 1fr);
     align-items: stretch;
-    gap: clamp(38px, 7vh, 62px);
+    gap: clamp(38px, calc(var(--section-vh, 1vh) * 7), 62px);
   }
 
   .about-section__content--attitude {
@@ -3013,7 +3013,7 @@ body.is-popup-modal-open .popup-card__overlay {
   .banner-slider {
     width: calc(100% - var(--section-title-padding-x) * 2);
     aspect-ratio: auto;
-    height: clamp(470px, 76svh, 560px);
+    height: clamp(470px, calc(var(--section-vh, 1vh) * 76), 560px);
     min-height: 0;
     margin-top: 36px;
   }
@@ -3125,57 +3125,38 @@ body.is-popup-modal-open .popup-card__overlay {
   }
 }
 
-@media (min-width: 769px) and (max-height: 820px) {
-  .about-section__content--attitude {
+@media (min-width: 769px) {
+:where(:root[data-section-height-short]) .about-section__content--attitude {
     top: 230px;
     bottom: 22px;
-  }
-
-  .attitude-grid {
+  }:where(:root[data-section-height-short]) .attitude-grid {
     gap: 18px 30px;
-  }
-
-  .attitude-card h3 {
+  }:where(:root[data-section-height-short]) .attitude-card h3 {
     font-size: 20px;
-  }
-
-  .attitude-card__description {
+  }:where(:root[data-section-height-short]) .attitude-card__description {
     margin-top: 12px;
     padding-left: 12px;
-  }
-
-  .about-section .attitude-card p {
+  }:where(:root[data-section-height-short]) .about-section .attitude-card p {
     font-size: 13px;
     line-height: 1.38;
-  }
-
-  .about-section .attitude-card .attitude-card__label {
+  }:where(:root[data-section-height-short]) .about-section .attitude-card .attitude-card__label {
     margin-bottom: 9px;
     font-size: 15px;
-  }
-
-  .about-section .attitude-card p+p {
+  }:where(:root[data-section-height-short]) .about-section .attitude-card p+p {
     margin-top: 7px;
-  }
-
-  .skills-section {
+  }:where(:root[data-section-height-short]) .skills-section {
     top: 245px;
     bottom: 26px;
-  }
-
-  .skill-card h3 {
+  }:where(:root[data-section-height-short]) .skill-card h3 {
     font-size: 22px;
-  }
-
-  .about-section .skill-card .skill-card__role {
+  }:where(:root[data-section-height-short]) .about-section .skill-card .skill-card__role {
     font-size: 14px;
-  }
-
-  .skill-card ul {
+  }:where(:root[data-section-height-short]) .skill-card ul {
     margin-top: 18px;
     font-size: 13px;
     line-height: 1.45;
   }
+
 }
 
 /* V17 responsive layout pass: one spatial system for every viewport. */
@@ -3216,10 +3197,10 @@ body.is-popup-modal-open .popup-card__overlay {
   --about-title-stack-height: 184px;
   --about-lead-stack-height: 45px;
   --about-lead-stack-margin: 28px;
-  --about-content-gap: clamp(18px, 2.8vh, 30px);
-  --about-content-bottom: clamp(28px, 5vh, 48px);
+  --about-content-gap: clamp(18px, calc(var(--section-vh, 1vh) * 2.8), 30px);
+  --about-content-bottom: clamp(28px, calc(var(--section-vh, 1vh) * 5), 48px);
   --about-content-top: calc(var(--section-title-padding-top) + var(--about-title-stack-height) + var(--about-lead-stack-margin) + var(--about-lead-stack-height) + var(--about-content-gap));
-  --skills-block-height: clamp(205px, 27vh, 255px);
+  --skills-block-height: clamp(205px, calc(var(--section-vh, 1vh) * 27), 255px);
   --about-caustics-width: clamp(608px, 53.2vw, 874px);
   --about-caustics-height: clamp(250px, 21.8vw, 359px);
 }
@@ -3319,9 +3300,9 @@ body.is-popup-modal-open .popup-card__overlay {
     --about-title-stack-height: 132px;
     --about-lead-stack-height: 34px;
     --about-lead-stack-margin: 20px;
-    --about-content-gap: clamp(18px, 2.6vh, 26px);
-    --about-content-bottom: clamp(24px, 4vh, 40px);
-    --skills-block-height: clamp(190px, 27vh, 230px);
+    --about-content-gap: clamp(18px, calc(var(--section-vh, 1vh) * 2.6), 26px);
+    --about-content-bottom: clamp(24px, calc(var(--section-vh, 1vh) * 4), 40px);
+    --skills-block-height: clamp(190px, calc(var(--section-vh, 1vh) * 27), 230px);
     --about-caustics-width: clamp(475px, 58.9vw, 627px);
     --about-caustics-height: clamp(195px, 24.2vw, 257px);
   }
@@ -3394,7 +3375,7 @@ body.is-popup-modal-open .popup-card__overlay {
     --about-lead-stack-margin: 16px;
     --about-content-gap: 20px;
     --about-content-bottom: 24px;
-    --skills-block-height: clamp(190px, 31vh, 245px);
+    --skills-block-height: clamp(190px, calc(var(--section-vh, 1vh) * 31), 245px);
     --about-caustics-width: clamp(399px, 72.2vw, 551px);
     --about-caustics-height: clamp(164px, 29.6vw, 226px);
   }
@@ -3417,7 +3398,7 @@ body.is-popup-modal-open .popup-card__overlay {
   }
 
   .banner-slider {
-    height: clamp(510px, 74svh, 640px);
+    height: clamp(510px, calc(var(--section-vh, 1vh) * 74), 640px);
     min-height: 0;
     aspect-ratio: auto;
   }
@@ -3483,7 +3464,7 @@ body.is-popup-modal-open .popup-card__overlay {
   }
 
   .banner-slider {
-    height: clamp(430px, 74svh, 530px);
+    height: clamp(430px, calc(var(--section-vh, 1vh) * 74), 530px);
   }
 
   .banner-slide__copy {
@@ -3505,12 +3486,13 @@ body.is-popup-modal-open .popup-card__overlay {
   }
 }
 
-@media (min-width: 769px) and (max-height: 820px) {
-  .about-section.portfolio-section {
+@media (min-width: 769px) {
+:where(:root[data-section-height-short]) .about-section.portfolio-section {
     --about-content-gap: 12px;
     --about-content-bottom: 22px;
     --skills-block-height: min(100%, 210px);
   }
+
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -3519,7 +3501,7 @@ body.is-popup-modal-open .popup-card__overlay {
   }
 
   .hero-transition {
-    height: 100svh;
+    height: calc(var(--section-vh, 1vh) * 100);
   }
 
   .hero {
@@ -3546,7 +3528,7 @@ body.is-popup-modal-open .popup-card__overlay {
   }
 
   .section-transition {
-    height: 100svh;
+    height: calc(var(--section-vh, 1vh) * 100);
   }
 
   .section-transition__tone {
@@ -3680,7 +3662,7 @@ body.is-popup-modal-open .popup-card__overlay {
 
 .about-section__left {
   position: sticky;
-  top: clamp(76px, 8vh, 112px);
+  top: clamp(76px, calc(var(--section-vh, 1vh) * 8), 112px);
   align-self: start;
   min-width: 0;
 }
@@ -3728,7 +3710,7 @@ body.is-popup-modal-open .popup-card__overlay {
   grid-template-rows: none;
   align-content: start;
   gap: clamp(72px, 8vw, 138px) clamp(32px, 4vw, 72px);
-  padding-top: clamp(84px, 10vh, 140px);
+  padding-top: clamp(84px, calc(var(--section-vh, 1vh) * 10), 140px);
   overflow: visible;
 }
 
@@ -4033,7 +4015,7 @@ body.is-detail-hover-reset .detail-card__cta {
 }
 
 .attitude-profile {
-  width: min(100%, 340px, 31.5vh);
+  width: min(100%, 340px, calc(var(--section-vh, 1vh) * 31.5));
   min-width: 0;
   margin: 0;
   color: #292524;
@@ -4103,7 +4085,7 @@ body.is-detail-hover-reset .detail-card__cta {
 
 .detail-showcase.portfolio-section {
   position: relative;
-  min-height: max(100svh, 940px);
+  min-height: max(calc(var(--section-vh, 1vh) * 100), 940px);
   padding: var(--section-title-padding-top) var(--section-title-padding-x) clamp(76px, 8vw, 132px);
   overflow: clip;
   background: #fff;
@@ -4297,7 +4279,7 @@ body.is-detail-hover-reset .detail-card__cta {
   }
 
   .attitude-layout .attitude-grid {
-    gap: clamp(18px, 2.3vh, 26px) clamp(20px, 2.5vw, 34px);
+    gap: clamp(18px, calc(var(--section-vh, 1vh) * 2.3), 26px) clamp(20px, 2.5vw, 34px);
   }
 
   .detail-showcase.portfolio-section {
@@ -4489,14 +4471,13 @@ body.is-detail-hover-reset .detail-card__cta {
   }
 }
 
-@media (min-width: 769px) and (max-height: 820px) {
-  .attitude-profile {
+@media (min-width: 769px) {
+:where(:root[data-section-height-short]) .attitude-profile {
     width: min(100%, 225px);
-  }
-
-  .attitude-layout .attitude-grid {
+  }:where(:root[data-section-height-short]) .attitude-layout .attitude-grid {
     gap: 18px 30px;
   }
+
 }
 
 @media (hover: none) {

@@ -31,7 +31,7 @@
     }
 
     const introTop = window.scrollY + introSection.getBoundingClientRect().top;
-    const introDistance = Math.max(introSection.offsetHeight - (introSection.querySelector(".section-transition__sticky")?.offsetHeight || window.innerHeight), 1);
+    const introDistance = Math.max(introSection.offsetHeight - (introSection.querySelector(".section-transition__sticky")?.offsetHeight || (window.PortfolioViewport?.height || window.innerHeight)), 1);
     const titleFrameY = introTop + introDistance * 0.43;
     siteHeader?.classList.remove("is-hidden");
 

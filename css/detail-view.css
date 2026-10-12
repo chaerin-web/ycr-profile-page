@@ -43,7 +43,7 @@ button {
 .detail-view__stage {
   position: relative;
   isolation: isolate;
-  min-height: 220svh;
+  min-height: calc(var(--section-vh, 1vh) * 220);
   overflow: visible;
   background: #fff;
 }
@@ -52,7 +52,7 @@ button {
   position: absolute;
   z-index: 0;
   inset: 0;
-  padding-top: 66svh;
+  padding-top: calc(var(--section-vh, 1vh) * 66);
   overflow: visible;
   pointer-events: none;
 }
@@ -81,8 +81,8 @@ button {
 .detail-view__intro {
   position: relative;
   z-index: 1;
-  min-height: 100svh;
-  padding: clamp(92px, 10vh, 124px) var(--detail-side) 58px;
+  min-height: calc(var(--section-vh, 1vh) * 100);
+  padding: clamp(92px, calc(var(--section-vh, 1vh) * 10), 124px) var(--detail-side) 58px;
 }
 
 .detail-view__intro-copy {
@@ -148,7 +148,7 @@ button {
 .detail-view__sparkle {
   position: absolute;
   z-index: 2;
-  top: clamp(170px, 19vh, 230px);
+  top: clamp(170px, calc(var(--section-vh, 1vh) * 19), 230px);
   right: clamp(52px, 12vw, 230px);
   width: clamp(28px, 3vw, 54px);
   height: auto;
@@ -159,7 +159,7 @@ button {
 .detail-view__document {
   position: relative;
   z-index: 2;
-  min-height: 120svh;
+  min-height: calc(var(--section-vh, 1vh) * 120);
   padding: clamp(100px, 11vw, 190px) var(--detail-side) clamp(140px, 15vw, 260px);
 }
 
@@ -275,7 +275,7 @@ button {
   }
 
   .detail-view__title-layer {
-    padding-top: 62svh;
+    padding-top: calc(var(--section-vh, 1vh) * 62);
   }
 
   .detail-view__title-layer p {
@@ -319,7 +319,7 @@ button {
 
 @media (max-width: 520px) {
   .detail-view__title-layer {
-    padding-top: 58svh;
+    padding-top: calc(var(--section-vh, 1vh) * 58);
   }
 
   .detail-view__title-layer p {
@@ -396,15 +396,15 @@ button {
 
 /* V20 — reference-accurate intro and responsive design-point layout. */
 .detail-view__stage {
-  min-height: 220svh;
+  min-height: calc(var(--section-vh, 1vh) * 220);
 }
 
 .detail-view__title-layer {
-  padding-top: clamp(165px, 20svh, 205px);
+  padding-top: clamp(165px, calc(var(--section-vh, 1vh) * 20), 205px);
 }
 
 .detail-view__title-layer p {
-  top: clamp(165px, 20svh, 205px);
+  top: clamp(165px, calc(var(--section-vh, 1vh) * 20), 205px);
   font-size: clamp(86px, 11.5vw, 220px);
   line-height: 0.82;
   transform: none;
@@ -412,9 +412,9 @@ button {
 
 .detail-view__intro {
   display: flex;
-  min-height: max(100svh, 820px);
+  min-height: max(calc(var(--section-vh, 1vh) * 100), 820px);
   flex-direction: column;
-  padding: clamp(82px, 9vh, 96px) var(--detail-side) clamp(44px, 5vh, 62px);
+  padding: clamp(82px, calc(var(--section-vh, 1vh) * 9), 96px) var(--detail-side) clamp(44px, calc(var(--section-vh, 1vh) * 5), 62px);
 }
 
 .detail-view__intro-copy {
@@ -472,7 +472,7 @@ button {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: clamp(42px, 5vw, 96px);
-  margin-top: clamp(36px, 4vh, 46px);
+  margin-top: clamp(36px, calc(var(--section-vh, 1vh) * 4), 46px);
 }
 
 .detail-view__point {
@@ -518,7 +518,7 @@ button {
   }
 
   .detail-view__design-points {
-    margin-top: max(270px, 30vh);
+    margin-top: max(270px, calc(var(--section-vh, 1vh) * 30));
   }
 
   .detail-view__point-grid {

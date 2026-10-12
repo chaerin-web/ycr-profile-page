@@ -39,16 +39,17 @@
 
     const updateAttitudeSticky = () => {
       const top = window.innerWidth <= 1024
-        ? Math.min(124, Math.max(88, window.innerHeight * 0.11))
-        : Math.min(112, Math.max(76, window.innerHeight * 0.08));
+        ? Math.min(124, Math.max(88, (window.PortfolioViewport?.height || window.innerHeight) * 0.11))
+        : Math.min(112, Math.max(76, (window.PortfolioViewport?.height || window.innerHeight) * 0.08));
       attitudeLeft.classList.toggle("is-too-tall",
-        window.innerWidth > 768 && attitudeLeft.offsetHeight + top + 24 > window.innerHeight);
+        window.innerWidth > 768 && attitudeLeft.offsetHeight + top + 24 > (window.PortfolioViewport?.height || window.innerHeight));
     };
 
     if ("ResizeObserver" in window) {
       new ResizeObserver(updateAttitudeSticky).observe(attitudeLeft);
     }
     window.addEventListener("resize", updateAttitudeSticky, { passive: true });
+    window.addEventListener("sectionviewportchange", updateAttitudeSticky);
     document.fonts?.ready.then(updateAttitudeSticky);
     updateAttitudeSticky();
   };
